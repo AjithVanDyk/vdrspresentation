@@ -56,7 +56,7 @@ AZURE_SAS_URL = "https://vandykone.blob.core.windows.net/contractsshippingfiles?
 SQL_SERVER   = "vdrsapps.database.windows.net"    # Line 9: SQL Server hostname
 SQL_DB       = "PowerAppsDatabase"                # Line 10: Database name
 SQL_USER     = "VDRSAdmin"                       # Line 11: Database username
-SQL_PASSWORD = "Oz01%O0wi"                       # Line 12: Database password
+SQL_PASSWORD = "YOUR_DATABASE_PASSWORD_HERE"  # Replace with your actual password                       # Line 12: Database password
 ```
 
 **Business Impact:**
@@ -595,7 +595,7 @@ graph TD
 SQL_SERVER = "vdrsapps.database.windows.net"
 SQL_DB = "PowerAppsDatabase"
 SQL_USER = "VDRSAdmin"
-SQL_PASSWORD = "Oz01%O0wi"
+SQL_PASSWORD = "YOUR_DATABASE_PASSWORD_HERE"  # Replace with your actual password
 FILES_TBL = "dbo.ContractsShippingContainerFiles"
 ```
 

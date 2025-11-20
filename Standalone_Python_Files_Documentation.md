@@ -180,7 +180,7 @@ TARGET_SERVER = "vdrsapps.database.windows.net"
 TARGET_DATABASE = "PowerAppsDatabase"
 TARGET_TABLE = "EquipmentDB"
 TARGET_USERNAME = "VDRSAdmin"
-TARGET_PASSWORD = "Oz01%O0wi"
+TARGET_PASSWORD = "YOUR_DATABASE_PASSWORD_HERE"  # Replace with your actual password
 
 # Equipment specifications
 WM_EQUIPMENT_SPECS = {
