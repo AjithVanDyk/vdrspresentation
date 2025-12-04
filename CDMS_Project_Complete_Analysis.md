@@ -40,6 +40,129 @@ The CDMS system is a critical business application designed to streamline contai
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
+## 📊 System Flowcharts
+
+### Document Upload Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              SUPPLIER LOGS INTO CDMS                         │
+│         OTP-based authentication (no passwords)              │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         SUPPLIER SELECTS PROJECT                             │
+│         Dropdown: Supplier Project No                        │
+│         Auto-fills: VDRS Ref, SPN, Account                    │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         SUPPLIER SELECTS FILES                               │
+│         - Approval drawings                                  │
+│         - E-Schematics                                       │
+│         - Hardware                                          │
+│         - Installation drawings                             │
+│         - User manuals                                       │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         VALIDATION                                           │
+│         - File type check (PDF, DOCX, etc.)                  │
+│         - Size validation (50MB per file)                   │
+│         - Filename sanitization                              │
+│         - MIME type verification                             │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         DUPLICATE CHECK                                      │
+│         Check if file already exists in Azure                │
+│         If exists: Prompt for versioning                     │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         UPLOAD TO AZURE FILES                               │
+│         Path: supplierfilesync/VDRSRef/SPN/Account/Category/│
+│         Upload progress tracked                              │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         DATABASE LOGGING                                     │
+│         - Record in Uploads table                            │
+│         - Record in Files table                              │
+│         - Store metadata (size, type, date)                 │
+│         - Capture client timestamp                           │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         SUCCESS CONFIRMATION                                 │
+│         Display upload summary                               │
+│         - Total files uploaded                               │
+│         - Total size                                         │
+│         - Categories with files                              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Document Search & Retrieval Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              USER SEARCHES FOR DOCUMENT                      │
+│         Search by: Container ID, date, type, keywords        │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         SEARCH TYPES:                                        │
+│         1. Full-text search (document content)              │
+│         2. Metadata filters (container ID, date, type)      │
+│         3. Advanced search (multiple criteria)                │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         QUERY DATABASE                                       │
+│         - Search Files table                                 │
+│         - Filter by criteria                                 │
+│         - Apply permissions (role-based)                     │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         RETRIEVE RESULTS                                     │
+│         - Paginated results (20 per page)                    │
+│         - Sorted by relevance/date                           │
+│         - Includes metadata                                  │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         USER SELECTS DOCUMENT                                │
+│         Click to view/download                               │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         RETRIEVE FROM AZURE                                  │
+│         - Get file from Azure Blob Storage                   │
+│         - Generate temporary download link                   │
+│         - Stream to user                                     │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         AUDIT LOG                                           │
+│         Log document access in AuditLog table                │
+│         Track: user, document, timestamp, action             │
+└─────────────────────────────────────────────────────────────┘
+```
+
 ### Technology Stack:
 - **Frontend**: React.js 18, Material-UI, React Dropzone
 - **Backend**: Node.js, Express.js, Built-in HTTP Server

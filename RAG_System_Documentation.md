@@ -130,33 +130,116 @@ The system uses multiple AI models for different tasks:
 
 ## 📊 Data Flow
 
-```mermaid
-graph TD
-    A[User Query] --> B[Query Processing]
-    B --> C[Vector Search]
-    B --> D[Database Search]
-    B --> E[Intelligent SQL Generation]
-    
-    C --> F[Document Retrieval]
-    D --> G[Equipment Data]
-    E --> H[SQL Query Execution]
-    
-    F --> I[Context Assembly]
-    G --> I
-    H --> I
-    
-    I --> J[AI Response Generation]
-    J --> K[Source Citation]
-    K --> L[Response Delivery]
-    
-    M[Document Upload] --> N[Document Processing]
-    N --> O[Vector Embedding]
-    O --> P[ChromaDB Storage]
-    P --> Q[Index Update]
-    
-    R[Database Update] --> S[Schema Analysis]
-    S --> T[Intelligent Mapping]
-    T --> U[Query Optimization]
+### RAG Query Processing Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              USER ASKS QUESTION                              │
+│         "How do I maintain the baler?"                       │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 1: QUESTION TO VECTOR                           │
+│         Embedding model converts question to vector          │
+│         (384-1536 dimensions depending on model)            │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 2: VECTOR DATABASE SEARCH                        │
+│         Searches Chroma/FAISS database                       │
+│         Finds similar document chunks using cosine similarity │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 3: RETRIEVE TOP DOCUMENTS                        │
+│         Returns top 5-10 most relevant chunks                │
+│         Score threshold: > 0.7 similarity                    │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 4: PREPARE CONTEXT                              │
+│         Combine retrieved chunks with question                │
+│         Add metadata (source, page number, etc.)             │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 5: LLM GENERATION                                │
+│         Send to GPT-4 with prompt:                           │
+│         "Answer based ONLY on provided context..."            │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 6: GENERATE ANSWER                              │
+│         LLM generates answer using retrieved context         │
+│         Includes source citations                            │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 7: RETURN TO USER                               │
+│         Answer + source citations + confidence score         │
+│         Response time: 2-6 seconds                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Document Ingestion Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              DOCUMENT INGESTION PROCESS                      │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         INPUT: PDF, DOCX, TXT FILES                          │
+│         From folder or individual upload                      │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 1: FILE PROCESSING                              │
+│         - Read document (PyPDF2, PyMuPDF)                    │
+│         - Extract text                                        │
+│         - OCR if scanned (Tesseract)                         │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 2: TEXT CHUNKING                                │
+│         - Split into chunks (500-1000 chars)                 │
+│         - Overlap: 100-200 chars                              │
+│         - Preserve context                                    │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 3: CREATE EMBEDDINGS                            │
+│         - Convert chunks to vectors                          │
+│         - Model: HuggingFace/Sentence-Transformers           │
+│         - Dimensions: 384-1536                               │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 4: STORE IN VECTOR DATABASE                     │
+│         - Chroma: Local storage                              │
+│         - FAISS: Alternative local storage                    │
+│         - Pinecone: Cloud storage (optional)                  │
+│         - Metadata: source, page, date, type                  │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         STEP 5: INDEXING COMPLETE                           │
+│         Document ready for querying                          │
+│         Logged in completed_files.txt                        │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ## 🚀 Getting Started
