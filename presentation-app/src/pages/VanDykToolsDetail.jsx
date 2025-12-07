@@ -6,10 +6,19 @@ import flowchartsMd from '../data/TOOLS_FLOWCHARTS.md?raw';
 
 // Initialize mermaid
 mermaid.initialize({
-  startOnLoad: true,
-  theme: 'dark',
+  startOnLoad: false,
+  theme: 'base',
   securityLevel: 'loose',
   fontFamily: 'Inter, sans-serif',
+  logLevel: 'error',
+  themeVariables: {
+    primaryColor: '#1a202c',
+    primaryTextColor: '#ffffff',
+    primaryBorderColor: '#4fd1c5',
+    lineColor: '#81e6d9',
+    secondaryColor: '#2d3748',
+    tertiaryColor: '#2c5282',
+  }
 });
 
 const MermaidDiagram = ({ chart, id }) => {
@@ -17,21 +26,41 @@ const MermaidDiagram = ({ chart, id }) => {
 
   useEffect(() => {
     if (containerRef.current && chart) {
-      containerRef.current.innerHTML = ''; // Clear previous
-      try {
-        mermaid.render(`mermaid-${id}`, chart).then(({ svg }) => {
+      containerRef.current.innerHTML = '<div class="flex items-center justify-center p-4 text-cyan-400">Rendering chart...</div>';
+      
+      // Small delay to ensure DOM is ready
+      const timer = setTimeout(() => {
+        try {
+          mermaid.render(`mermaid-${id}`, chart)
+            .then(({ svg }) => {
+              if (containerRef.current) {
+                containerRef.current.innerHTML = svg;
+              }
+            })
+            .catch((error) => {
+              console.error('Mermaid render error:', error);
+              if (containerRef.current) {
+                containerRef.current.innerHTML = `
+                  <div class="text-red-400 p-4 border border-red-500/30 rounded bg-red-500/10">
+                    <p class="font-bold mb-2">Error rendering chart</p>
+                    <pre class="text-xs overflow-auto">${error.message}</pre>
+                  </div>
+                `;
+              }
+            });
+        } catch (error) {
+          console.error('Mermaid sync error:', error);
           if (containerRef.current) {
-            containerRef.current.innerHTML = svg;
+            containerRef.current.innerHTML = '<div class="text-red-400">Error initializing chart</div>';
           }
-        });
-      } catch (error) {
-        console.error('Mermaid render error:', error);
-        containerRef.current.innerHTML = '<div class="text-red-400">Error rendering chart</div>';
-      }
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
     }
   }, [chart, id]);
 
-  return <div ref={containerRef} className="mermaid-diagram overflow-x-auto p-4 bg-black/40 rounded-xl" />;
+  return <div ref={containerRef} className="mermaid-diagram overflow-x-auto p-4 bg-black/40 rounded-xl min-h-[200px] flex items-center justify-center" />;
 };
 
 const ToolCard = ({ tool, onClick }) => (
@@ -106,7 +135,7 @@ const ToolDetail = ({ tool, onClose }) => (
             Process Logic
           </h3>
           {tool.mermaid && (
-            <MermaidDiagram chart={tool.mermaid} id={`detail-${tool.title.replace(/\s+/g, '-')}`} />
+            <MermaidDiagram chart={tool.mermaid} id={`detail-${tool.title.replace(/[^a-zA-Z0-9]/g, '-')}`} />
           )}
         </div>
       </motion.div>

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
 
-function CDMS() {
+function CostIQ() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -28,22 +28,19 @@ function CDMS() {
         <motion.div variants={itemVariants} style={{ textAlign: 'center', marginBottom: '30px' }}>
           <h1 style={{ 
             fontSize: '3em', 
-            background: 'linear-gradient(to right, #4facfe, #00f2fe)', 
+            background: 'linear-gradient(to right, #f59e0b, #d97706)', 
             WebkitBackgroundClip: 'text', 
             WebkitTextFillColor: 'transparent',
             margin: '0 0 10px 0'
           }}>
-            CDMS
+            CostIQ
           </h1>
           <h2 style={{ fontSize: '1.5em', color: '#a0aec0', fontWeight: '300', margin: '0 0 25px 0' }}>
-            Container Document Management System
+            Travel Cost ML Pipeline
           </h2>
           
           <div style={{ display: 'inline-block' }}>
-            <a 
-              href="https://cdms.vdrs.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <div 
               className="live-project-btn"
               style={{ 
                 display: 'inline-flex',
@@ -51,19 +48,16 @@ function CDMS() {
                 gap: '10px',
                 padding: '15px 40px', 
                 fontSize: '1.2em', 
-                background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
                 borderRadius: '50px',
                 color: 'white',
                 textDecoration: 'none',
                 fontWeight: 'bold',
-                boxShadow: '0 10px 20px rgba(79, 172, 254, 0.4)',
-                transition: 'transform 0.2s, box-shadow 0.2s'
+                boxShadow: '0 10px 20px rgba(245, 158, 11, 0.4)',
+                cursor: 'default'
               }}
             >
-              <span>🚀</span> View Live System
-            </a>
-            <div style={{ fontSize: '0.9em', color: '#718096', marginTop: '10px' }}>
-              (Walkthrough available after clicking)
+              <span>🧠</span> Predictive Analytics
             </div>
           </div>
         </motion.div>
@@ -74,21 +68,21 @@ function CDMS() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>📧</span>
-              <h3 style={{ margin: 0, color: '#feb47b' }}>The Problem</h3>
+              <span style={{ fontSize: '2em' }}>📉</span>
+              <h3 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h3>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              We had an old "Contracts App" that wasn't working well. Suppliers were emailing important files, which was messy and insecure.
+              Quoting service travel costs was a manual, estimation-heavy process. We needed a way to accurately predict multi-leg trip costs (flights, lodging, ground) instantly.
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>🛡️</span>
+              <span style={{ fontSize: '2em' }}>🤖</span>
               <h3 style={{ margin: 0, color: '#68d391' }}>My Solution</h3>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              I built a secure website where suppliers can upload files directly. Even though I was new to React and Azure, I learned quickly and delivered a robust solution.
+              Built a Flask-based ML pipeline with 3 specialized models for Airfare, Lodging, and Mileage. It uses SQL data to predict precise service costs for customer quotes.
             </p>
           </motion.div>
         </div>
@@ -96,10 +90,10 @@ function CDMS() {
         {/* Metrics Grid */}
         <motion.div variants={itemVariants} className="metrics-grid" style={{ margin: '0 0 25px 0', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
           {[
-            { label: 'Partner Companies', value: 5, suffix: '', color: '#805ad5' },
-            { label: 'Codebase', value: 3.5, suffix: 'K+', color: '#38a169' },
-            { label: 'Uptime', value: 99.9, suffix: '%', color: '#3182ce' },
-            { label: 'Users', value: 40, suffix: '+', color: '#d69e2e' }
+            { label: 'Models', value: 3, suffix: '', color: '#805ad5' },
+            { label: 'Accuracy', value: 92, suffix: '%', color: '#38a169' },
+            { label: 'Quote Time', value: 5, suffix: 's', color: '#3182ce' },
+            { label: 'Data Points', value: 10, suffix: 'K+', color: '#d69e2e' }
           ].map((metric, index) => (
             <div key={index} className="metric-card" style={{ 
               background: `linear-gradient(135deg, ${metric.color}22 0%, ${metric.color}44 100%)`, 
@@ -124,11 +118,10 @@ function CDMS() {
             <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '⚛️', text: 'Frontend: React & Material-UI' },
-                { icon: '🟢', text: 'Backend: Node.js & Express' },
-                { icon: '🗄️', text: 'DB: Azure SQL Server' },
-                { icon: '☁️', text: 'Storage: Azure Blob Storage' },
-                { icon: '🔐', text: 'Auth: OTP & JWT (Office 365)' }
+                { icon: '🐍', text: 'Backend: Flask & Python' },
+                { icon: '🧠', text: 'ML: 3 Specialized Models' },
+                { icon: '🗄️', text: 'Data: SQL (Single Source of Truth)' },
+                { icon: '🔄', text: 'Validation: Cross-validation Pipeline' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
                   <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
@@ -138,13 +131,12 @@ function CDMS() {
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Enterprise Features</h4>
+            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '👥', text: 'RBAC: Supplier vs. Employee Views' },
-                { icon: '📄', text: 'Docs: Auto-categorized Uploads' },
-                { icon: '🔍', text: 'Search: VDRS Reference Tracking' },
-                { icon: '🚀', text: 'CI/CD: GitHub Actions Pipelines' }
+                { icon: '💰', text: 'Revenue: Accurate quoting prevents loss' },
+                { icon: '⚡', text: 'Speed: Instant quotes vs manual calculation' },
+                { icon: '🎯', text: 'Precision: Component-based cost breakdown' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
                   <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
@@ -159,4 +151,4 @@ function CDMS() {
   );
 }
 
-export default CDMS;
+export default CostIQ;

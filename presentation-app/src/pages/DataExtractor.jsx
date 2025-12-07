@@ -52,9 +52,9 @@ function DataExtractor() {
         <div className="tech-list" style={{ margin: 0, padding: '15px' }}>
           <h4 style={{ margin: '5px 0' }}>Tool Capabilities</h4>
           <ul style={{ fontSize: '0.9em' }}>
-            <li><strong>PDF Data Extraction:</strong> Automatically pull structured data</li>
+            <li><strong>PDF Engines:</strong> PyMuPDF & pdfplumber for robust extraction</li>
             <li><strong>DWG Processing:</strong> Extract info from technical drawings</li>
-            <li><strong>Batch Processing:</strong> Handle multiple files at once</li>
+            <li><strong>Infrastructure:</strong> Azure Files with FTP Sync</li>
             <li><strong>Modular Design:</strong> Tools use specific code modules</li>
           </ul>
         </div>

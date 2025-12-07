@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
 import Home from './pages/Home';
@@ -11,9 +11,10 @@ import VDRS360 from './pages/VDRS360';
 import VanDykTools from './pages/VanDykTools';
 import MobileApp from './pages/MobileApp';
 import VDRSWebsite from './pages/VDRSWebsite';
-import PersonalExperiences from './pages/PersonalExperiences';
 import Summary from './pages/Summary';
 import VanDykToolsDetail from './pages/VanDykToolsDetail';
+import CostIQ from './pages/CostIQ';
+import VDRSExchange from './pages/VDRSExchange';
 import EasterEggManager from './components/EasterEggManager';
 
 function App() {
@@ -54,12 +55,14 @@ function AppContent() {
   
   return (
     <>
-      <Navigation />
+      <Navbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
           <Route path="/rag-system" element={<PageTransition><RAGSystem /></PageTransition>} />
           <Route path="/dykscribe" element={<PageTransition><DykScribe /></PageTransition>} />
+          <Route path="/cost-iq" element={<PageTransition><CostIQ /></PageTransition>} />
+          <Route path="/vdrs-exchange" element={<PageTransition><VDRSExchange /></PageTransition>} />
           <Route path="/data-extractor" element={<PageTransition><DataExtractor /></PageTransition>} />
           <Route path="/cdms" element={<PageTransition><CDMS /></PageTransition>} />
           <Route path="/vdrs360" element={<PageTransition><VDRS360 /></PageTransition>} />
@@ -67,7 +70,6 @@ function AppContent() {
           <Route path="/vandyk-tools-detail" element={<PageTransition><VanDykToolsDetail /></PageTransition>} />
           <Route path="/mobile-app" element={<PageTransition><MobileApp /></PageTransition>} />
           <Route path="/website" element={<PageTransition><VDRSWebsite /></PageTransition>} />
-          <Route path="/experiences" element={<PageTransition><PersonalExperiences /></PageTransition>} />
           <Route path="/summary" element={<PageTransition><Summary /></PageTransition>} />
         </Routes>
       </AnimatePresence>
@@ -78,83 +80,54 @@ function AppContent() {
 function PageTransition({ children }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: '100%' }}
     >
       {children}
     </motion.div>
   );
 }
 
-function Navigation() {
-  const navigate = useNavigate();
+function Navbar() {
   const location = useLocation();
-  const [currentPath, setCurrentPath] = useState(location.pathname);
-
-  const routes = React.useMemo(() => [
+  
+  const routes = [
     { path: '/', label: 'Home' },
-    { path: '/rag-system', label: 'RAG System' },
+    { path: '/rag-system', label: 'RAG' },
     { path: '/dykscribe', label: 'DykScribe' },
-    { path: '/data-extractor', label: 'Data Extractor' },
+    { path: '/cost-iq', label: 'CostIQ' },
+    { path: '/vdrs-exchange', label: 'Exchange' },
+    { path: '/data-extractor', label: 'Extractor' },
     { path: '/cdms', label: 'CDMS' },
     { path: '/vdrs360', label: 'VDRS360' },
-    { path: '/tools', label: 'Tools Hub' },
-    { path: '/mobile-app', label: 'Mobile App' },
-    { path: '/website', label: 'VDRS Website' },
-    { path: '/experiences', label: 'Personal Experiences' },
-    { path: '/summary', label: 'Summary' }
-  ], []);
-
-  useEffect(() => {
-    setCurrentPath(location.pathname);
-  }, [location]);
-
-  const currentIndex = routes.findIndex(r => r.path === currentPath);
-
-  const goNext = useCallback(() => {
-    if (currentIndex < routes.length - 1) {
-      const nextPath = routes[currentIndex + 1].path;
-      navigate(nextPath);
-    }
-  }, [currentIndex, navigate, routes]);
-
-  const goPrev = useCallback(() => {
-    if (currentIndex > 0) {
-      const prevPath = routes[currentIndex - 1].path;
-      navigate(prevPath);
-    }
-  }, [currentIndex, navigate, routes]);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowRight') goNext();
-      if (e.key === 'ArrowLeft') goPrev();
-      if (e.key === 'Home') {
-        navigate('/');
-      }
-      if (e.key === 'End') {
-        const lastPath = routes[routes.length - 1].path;
-        navigate(lastPath);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [goNext, goPrev, navigate, routes]);
+    { path: '/tools', label: 'Tools' },
+    { path: '/mobile-app', label: 'Mobile' },
+    { path: '/website', label: 'Website' },
+    { path: '/summary', label: 'Life at VDRS' }
+  ];
 
   return (
-    <>
-      <div className="vdrs-logo">VAN DYK</div>
-      <div className="progress-bar" style={{ width: `${((currentIndex + 1) / routes.length) * 100}%` }}></div>
-      <div className="nav-controls">
-        <button className="nav-btn" onClick={goPrev} disabled={currentIndex === 0}>← Prev</button>
-        <div className="slide-indicator">{currentIndex + 1} / {routes.length}</div>
-        <button className="nav-btn" onClick={goNext} disabled={currentIndex === routes.length - 1}>Next →</button>
+    <nav className="navbar">
+      <div className="nav-logo-container">
+        <Link to="/">
+          <img src="/images/logo/realvdrs.png" alt="VAN DYK" className="nav-logo" />
+        </Link>
       </div>
-    </>
+      <div className="nav-links">
+        {routes.map((route) => (
+          <Link 
+            key={route.path} 
+            to={route.path} 
+            className={`nav-link ${location.pathname === route.path ? 'active' : ''}`}
+          >
+            {route.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
   );
 }
 

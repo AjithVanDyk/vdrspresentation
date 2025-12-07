@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
 
-function CDMS() {
+function VDRSExchange() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -33,17 +33,14 @@ function CDMS() {
             WebkitTextFillColor: 'transparent',
             margin: '0 0 10px 0'
           }}>
-            CDMS
+            VDRS Exchange
           </h1>
           <h2 style={{ fontSize: '1.5em', color: '#a0aec0', fontWeight: '300', margin: '0 0 25px 0' }}>
-            Container Document Management System
+            Enterprise Secure File Exchange
           </h2>
           
           <div style={{ display: 'inline-block' }}>
-            <a 
-              href="https://cdms.vdrs.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <div 
               className="live-project-btn"
               style={{ 
                 display: 'inline-flex',
@@ -57,13 +54,10 @@ function CDMS() {
                 textDecoration: 'none',
                 fontWeight: 'bold',
                 boxShadow: '0 10px 20px rgba(79, 172, 254, 0.4)',
-                transition: 'transform 0.2s, box-shadow 0.2s'
+                cursor: 'default'
               }}
             >
-              <span>🚀</span> View Live System
-            </a>
-            <div style={{ fontSize: '0.9em', color: '#718096', marginTop: '10px' }}>
-              (Walkthrough available after clicking)
+              <span>🔒</span> Secure Supplier Portal
             </div>
           </div>
         </motion.div>
@@ -74,11 +68,11 @@ function CDMS() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>📧</span>
-              <h3 style={{ margin: 0, color: '#feb47b' }}>The Problem</h3>
+              <span style={{ fontSize: '2em' }}>⚠️</span>
+              <h3 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h3>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              We had an old "Contracts App" that wasn't working well. Suppliers were emailing important files, which was messy and insecure.
+              Suppliers needed a secure way to upload specific project files (Schematics, Manuals) without relying on insecure emails or complex FTP clients.
             </p>
           </motion.div>
 
@@ -88,7 +82,7 @@ function CDMS() {
               <h3 style={{ margin: 0, color: '#68d391' }}>My Solution</h3>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              I built a secure website where suppliers can upload files directly. Even though I was new to React and Azure, I learned quickly and delivered a robust solution.
+              Built a secure web portal with OTP authentication. Suppliers can easily upload files into 5 specific categories, which are automatically organized into our internal Azure Files structure.
             </p>
           </motion.div>
         </div>
@@ -96,10 +90,10 @@ function CDMS() {
         {/* Metrics Grid */}
         <motion.div variants={itemVariants} className="metrics-grid" style={{ margin: '0 0 25px 0', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
           {[
-            { label: 'Partner Companies', value: 5, suffix: '', color: '#805ad5' },
-            { label: 'Codebase', value: 3.5, suffix: 'K+', color: '#38a169' },
-            { label: 'Uptime', value: 99.9, suffix: '%', color: '#3182ce' },
-            { label: 'Users', value: 40, suffix: '+', color: '#d69e2e' }
+            { label: 'Categories', value: 5, suffix: '', color: '#805ad5' },
+            { label: 'Security', value: 256, suffix: '-bit', color: '#38a169' },
+            { label: 'Uptime', value: 99, suffix: '%', color: '#3182ce' },
+            { label: 'Integration', value: 100, suffix: '%', color: '#d69e2e' }
           ].map((metric, index) => (
             <div key={index} className="metric-card" style={{ 
               background: `linear-gradient(135deg, ${metric.color}22 0%, ${metric.color}44 100%)`, 
@@ -124,11 +118,10 @@ function CDMS() {
             <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '⚛️', text: 'Frontend: React & Material-UI' },
-                { icon: '🟢', text: 'Backend: Node.js & Express' },
-                { icon: '🗄️', text: 'DB: Azure SQL Server' },
-                { icon: '☁️', text: 'Storage: Azure Blob Storage' },
-                { icon: '🔐', text: 'Auth: OTP & JWT (Office 365)' }
+                { icon: '🔐', text: 'Auth: OTP with SHA-256 Hashing' },
+                { icon: '🗄️', text: 'Backend: Flask & SQL Server' },
+                { icon: '☁️', text: 'Storage: Azure Files (FTP Mirror)' },
+                { icon: '⚛️', text: 'Frontend: React & Material-UI' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
                   <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
@@ -138,13 +131,12 @@ function CDMS() {
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Enterprise Features</h4>
+            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Workflow Impact</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '👥', text: 'RBAC: Supplier vs. Employee Views' },
-                { icon: '📄', text: 'Docs: Auto-categorized Uploads' },
-                { icon: '🔍', text: 'Search: VDRS Reference Tracking' },
-                { icon: '🚀', text: 'CI/CD: GitHub Actions Pipelines' }
+                { icon: '📂', text: 'Organization: Auto-sorted by Project' },
+                { icon: '✅', text: 'Clarity: 5 Distinct File Categories' },
+                { icon: '🔄', text: 'Sync: Instant Internal Access' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
                   <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
@@ -159,4 +151,4 @@ function CDMS() {
   );
 }
 
-export default CDMS;
+export default VDRSExchange;
