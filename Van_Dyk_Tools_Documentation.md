@@ -20,6 +20,189 @@
 7. **Data Processing Pipelines** - YOLO-based computer vision pipelines for image analysis
 8. **Database Integration** - SQL Server integration for equipment data management
 
+## 📊 System Flowcharts
+
+### Overall System Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    USER ACCESSES WEBAPP                      │
+│                  http://localhost:5000                      │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    HOME DASHBOARD                           │
+│         Displays all 30+ available tools                    │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+        ┌──────────────────┴──────────────────┐
+        │                                      │
+        ↓                                      ↓
+┌───────────────┐                    ┌───────────────┐
+│  DOCUMENT     │                    │  DATA         │
+│  PROCESSING   │                    │  PROCESSING   │
+│  TOOLS        │                    │  TOOLS        │
+└───────┬───────┘                    └───────┬───────┘
+        │                                      │
+        ├─ PDF Matcher                        ├─ Excel Comparator
+        ├─ Serial Copier                      ├─ Serial Matcher
+        ├─ AI Extractor                       ├─ Duplicate Finder
+        ├─ Machine Info                       ├─ Part Formatter
+        └─ Drawing Extractor                  └─ Filter Tools
+                           │
+                           ↓
+        ┌──────────────────┴──────────────────┐
+        │                                      │
+        ↓                                      ↓
+┌───────────────┐                    ┌───────────────┐
+│  AI/ML        │                    │  FILE         │
+│  TOOLS        │                    │  MANAGEMENT   │
+│               │                    │  TOOLS        │
+└───────┬───────┘                    └───────┬───────┘
+        │                                      │
+        ├─ DataDropper                        ├─ File Organizer
+        ├─ Pipeline 1 (YOLO)                  ├─ VDRS Sync
+        └─ Pipeline 2 (GPT)                   └─ Folder Tools
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              PROCESSING VIA WEBSOCKET                      │
+│         Real-time progress updates to user                  │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    RESULTS DISPLAYED                         │
+│         Excel files, reports, summaries                      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### PDF Matcher Detailed Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              USER ACCESSES PDF MATCHER TOOL                  │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         USER ENTERS ITEM NUMBERS (Excel or Manual)           │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              USER CLICKS "CHECK EXISTING"                    │
+│         System checks if items exist in destination          │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         DISPLAY: Existing Items vs New Items                 │
+│         User can review before starting operation             │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              USER CLICKS "START OPERATION"                   │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         CREATE PDFFileOperationManager                        │
+│         Initialize thread pool for parallel processing        │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         FOR EACH ITEM NUMBER:                                │
+│         1. Search source directories                          │
+│         2. Extract numbers from PDF filenames                 │
+│         3. Match with item number                             │
+│         4. Copy matched PDF to destination                    │
+│         5. Update progress via WebSocket                      │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              GENERATE SUMMARY REPORT                          │
+│         - Total items processed                               │
+│         - Items found                                         │
+│         - Items not found                                     │
+│         - Files copied                                        │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    DISPLAY RESULTS                            │
+│         User can download report Excel file                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### AI Extractor Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│              USER ACCESSES AI EXTRACTOR                      │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         USER SELECTS FOLDER OR INDIVIDUAL PDFS                │
+│         Optional: Enter keywords to filter PDFs               │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              SYSTEM SCANS FOLDER                               │
+│         Recursively finds all PDF files                       │
+│         Filters by keywords if provided                       │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         DISPLAY MATCHING PDFS                                │
+│         User selects which PDFs to process                    │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              USER CLICKS "EXTRACT"                            │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         FOR EACH SELECTED PDF:                                │
+│         1. Read PDF with PyPDF2                               │
+│         2. Extract text from first page                       │
+│         3. Generate Prompt 1: Machine Info                   │
+│         4. Call OpenAI GPT-3.5 for Machine Data                │
+│         5. Generate Prompt 2: Belt Info                       │
+│         6. Call OpenAI Fine-tuned Model for Belt Data          │
+│         7. Parse JSON responses                               │
+│         8. Update progress via WebSocket                       │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│         COMBINE ALL DATA INTO DATAFRAMES                      │
+│         Create pivot tables for analysis                       │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              EXPORT TO EXCEL                                  │
+│         Multiple sheets with different views                  │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│                    DISPLAY RESULTS                            │
+│         User can download Excel file                          │
+└─────────────────────────────────────────────────────────────┘
+```
+
 ### Technology Stack
 - **Web Framework**: Flask with Flask-SocketIO for real-time communication
 - **AI Integration**: OpenAI GPT-4 Vision API, custom fine-tuned models
