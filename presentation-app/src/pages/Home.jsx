@@ -83,7 +83,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="metrics-grid" style={{ margin: '15px 0' }}>
+      <div className="metrics-grid" style={{ margin: '15px 0', gridTemplateColumns: 'repeat(3, 1fr)' }}>
         <div className="metric-card" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding: '20px' }}>
           <div className="metric-value" style={{ fontSize: '2.2em' }}>
             <AnimatedCounter value={11} duration={2} />
@@ -91,23 +91,16 @@ function Home() {
           <div className="metric-label">Production Systems</div>
         </div>
 
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)', padding: '20px' }}>
-          <div className="metric-value" style={{ fontSize: '2.2em' }}>
-            <AnimatedCounter value={100} duration={2.5} />+
-          </div>
-          <div className="metric-label">Active Users</div>
-        </div>
-
         <div className="metric-card" style={{ background: 'linear-gradient(135deg, #17a2b8 0%, #138496 100%)', padding: '20px' }}>
           <div className="metric-value" style={{ fontSize: '2.2em' }}>
-            <AnimatedCounter value={100000} duration={3} />+
+            <AnimatedCounter value={10000} duration={3} />+
           </div>
           <div className="metric-label">Files Processed</div>
         </div>
 
         <div className="metric-card" style={{ background: 'linear-gradient(135deg, #ffc107 0%, #ff9800 100%)', padding: '20px' }}>
           <div className="metric-value" style={{ fontSize: '2.2em' }}>
-            <AnimatedCounter value={100} duration={2} />GB+
+            <AnimatedCounter value={100} duration={2} />GB
           </div>
           <div className="metric-label">Data Managed</div>
         </div>
@@ -116,23 +109,23 @@ function Home() {
       {/* Journey Box */}
       <div className="journey-box" style={{ padding: '20px', margin: '15px 0' }}>
         <h4 style={{ color: 'white', marginBottom: '15px', fontSize: '1.3em' }}>
-          🌏 Manufacturing Engineer → AI Systems Developer
+          🌏 Mechatronics → Operations → Manufacturing → After Sales
         </h4>
         <div className="two-column" style={{ textAlign: 'left', gap: '20px', margin: 0 }}>
           <div>
             <p style={{ margin: '5px 0' }}><strong style={{ color: 'white' }}>🇮🇳 India (2022-2024):</strong></p>
             <ul style={{ color: 'white', marginLeft: '20px', fontSize: '0.95em' }}>
-              <li>Team Manager at Hero MotoCorp</li>
+              <li>Started on Shop Floor (Mechatronics)</li>
+              <li>Learned Backend of Operations</li>
               <li>Reduced downtime by 83%</li>
-              <li>Saved ₹9M through automation</li>
             </ul>
           </div>
           <div>
             <p style={{ margin: '5px 0' }}><strong style={{ color: 'white' }}>🇺🇸 United States (2024-2025):</strong></p>
             <ul style={{ color: 'white', marginLeft: '20px', fontSize: '0.95em' }}>
               <li>Northeastern University Master's</li>
-              <li>Built 11 production systems</li>
-              <li>Applied manufacturing mindset to software</li>
+              <li>Building Custom AI Systems</li>
+              <li>Streamlining Operations & Increasing Profits</li>
             </ul>
           </div>
         </div>
