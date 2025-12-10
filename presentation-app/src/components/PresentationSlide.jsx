@@ -1,50 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
-    }
-  },
-  exit: {
-    opacity: 0,
-    transition: { duration: 0.2 }
-  }
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
+import { fadeInUp } from '../utils/animations';
 
 const PresentationSlide = ({ children, className = "" }) => {
   return (
-    <motion.div 
-      className={`page ${className}`}
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      // Inline styles removed to let CSS control layout
-    >
-      {React.Children.map(children, (child) => {
-        // Wrap each direct child in a motion div for staggered animation
+    <div className={`page ${className}`}>
+      {React.Children.map(children, (child, index) => {
         if (React.isValidElement(child)) {
           return (
             <motion.div 
-              variants={itemVariants} 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={fadeInUp}
+              transition={{ delay: index * 0.1 }} // Keep some stagger effect logic if possible, though standard stagger is harder with independent viewports. Just standard delay for first few might be tricky.
+              // Actually, simply using the variant's transition is better. 
+              // We'll override the delay in the variant if needed, or just let them trigger naturally.
               style={{ 
                 width: '100%',
-                flexShrink: 1, // Allow shrinking
-                minHeight: 0   // Allow shrinking below content size
+                marginBottom: '20px'
               }}
             >
               {child}
@@ -53,7 +27,7 @@ const PresentationSlide = ({ children, className = "" }) => {
         }
         return child;
       })}
-    </motion.div>
+    </div>
   );
 };
 

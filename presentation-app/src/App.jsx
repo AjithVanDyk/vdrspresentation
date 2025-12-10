@@ -15,20 +15,32 @@ import Summary from './pages/Summary';
 import VanDykToolsDetail from './pages/VanDykToolsDetail';
 import CostIQ from './pages/CostIQ';
 import VDRSExchange from './pages/VDRSExchange';
+import Customers from './pages/Customers';
 import EasterEggManager from './components/EasterEggManager';
 
+// Theme Configuration
+const LIGHT_THEME_ROUTES = ['/rag-system', '/dykscribe', '/vdrs360', '/mobile-app'];
+
 function App() {
-  // Interactive background state
+  return (
+    <Router>
+      <AppWrapper />
+    </Router>
+  );
+}
+
+function AppWrapper() {
+  const location = useLocation();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Determine if current route should be light theme
+  const isLightTheme = LIGHT_THEME_ROUTES.includes(location.pathname);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      // Normalize coordinates -1 to 1
       const x = (e.clientX / window.innerWidth) * 2 - 1;
       const y = (e.clientY / window.innerHeight) * 2 - 1;
       setMousePosition({ x, y });
-      
-      // Update CSS variables for subtle background shift
       document.documentElement.style.setProperty('--mouse-x', x);
       document.documentElement.style.setProperty('--mouse-y', y);
     };
@@ -38,15 +50,13 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="app">
-        <div className="bg-gradient" style={{
-          transform: `translate(${mousePosition.x * -10}px, ${mousePosition.y * -10}px) scale(1.05)`
-        }} />
-        <EasterEggManager />
-        <AppContent />
-      </div>
-    </Router>
+    <div className={`app ${isLightTheme ? 'theme-light' : 'theme-dark'}`}>
+      <div className="bg-gradient" style={{
+        transform: `translate(${mousePosition.x * -10}px, ${mousePosition.y * -10}px) scale(1.05)`
+      }} />
+      <EasterEggManager />
+      <AppContent />
+    </div>
   );
 }
 
@@ -59,18 +69,25 @@ function AppContent() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+          
+          {/* Incomplete / Light Theme Group */}
           <Route path="/rag-system" element={<PageTransition><RAGSystem /></PageTransition>} />
           <Route path="/dykscribe" element={<PageTransition><DykScribe /></PageTransition>} />
-          <Route path="/cost-iq" element={<PageTransition><CostIQ /></PageTransition>} />
-          <Route path="/vdrs-exchange" element={<PageTransition><VDRSExchange /></PageTransition>} />
-          <Route path="/data-extractor" element={<PageTransition><DataExtractor /></PageTransition>} />
-          <Route path="/cdms" element={<PageTransition><CDMS /></PageTransition>} />
           <Route path="/vdrs360" element={<PageTransition><VDRS360 /></PageTransition>} />
-          <Route path="/tools" element={<PageTransition><VanDykTools /></PageTransition>} />
-          <Route path="/vandyk-tools-detail" element={<PageTransition><VanDykToolsDetail /></PageTransition>} />
           <Route path="/mobile-app" element={<PageTransition><MobileApp /></PageTransition>} />
+          
+          {/* Completed / Dark Theme Group */}
           <Route path="/website" element={<PageTransition><VDRSWebsite /></PageTransition>} />
+          <Route path="/tools" element={<PageTransition><VanDykTools /></PageTransition>} />
+          <Route path="/cdms" element={<PageTransition><CDMS /></PageTransition>} />
+          <Route path="/vdrs-exchange" element={<PageTransition><VDRSExchange /></PageTransition>} />
+          <Route path="/cost-iq" element={<PageTransition><CostIQ /></PageTransition>} />
+          <Route path="/customers" element={<PageTransition><Customers /></PageTransition>} />
           <Route path="/summary" element={<PageTransition><Summary /></PageTransition>} />
+          
+          {/* Hidden/Detail Routes */}
+          <Route path="/data-extractor" element={<PageTransition><DataExtractor /></PageTransition>} />
+          <Route path="/vandyk-tools-detail" element={<PageTransition><VanDykToolsDetail /></PageTransition>} />
         </Routes>
       </AnimatePresence>
     </>
@@ -93,41 +110,68 @@ function PageTransition({ children }) {
 
 function Navbar() {
   const location = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
+  // Custom Chronology Order (Home hidden from chronological text list to match user request)
   const routes = [
-    { path: '/', label: 'Home' },
     { path: '/rag-system', label: 'RAG' },
     { path: '/dykscribe', label: 'DykScribe' },
-    { path: '/cost-iq', label: 'CostIQ' },
-    { path: '/vdrs-exchange', label: 'Exchange' },
-    { path: '/data-extractor', label: 'Extractor' },
-    { path: '/cdms', label: 'CDMS' },
     { path: '/vdrs360', label: 'VDRS360' },
-    { path: '/tools', label: 'Tools' },
     { path: '/mobile-app', label: 'Mobile' },
     { path: '/website', label: 'Website' },
+    { path: '/tools', label: 'Tools' },
+    { path: '/cdms', label: 'CDMS' },
+    { path: '/vdrs-exchange', label: 'Exchange' },
+    { path: '/cost-iq', label: 'CostIQ' },
+    { path: '/customers', label: 'Customers' },
     { path: '/summary', label: 'Life at VDRS' }
   ];
 
   return (
-    <nav className="navbar">
+    <motion.nav 
+      className={`navbar ${scrolled ? 'scrolled' : ''}`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="nav-logo-container">
         <Link to="/">
-          <img src="/images/logo/realvdrs.png" alt="VAN DYK" className="nav-logo" />
+          <motion.img 
+            src="/images/logo/realvdrs.png" 
+            alt="VAN DYK" 
+            className="nav-logo" 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          />
         </Link>
       </div>
       <div className="nav-links">
-        {routes.map((route) => (
+        {routes.map((route, i) => (
           <Link 
             key={route.path} 
             to={route.path} 
-            className={`nav-link ${location.pathname === route.path ? 'active' : ''}`}
           >
-            {route.label}
+            <motion.div
+              className={`nav-link ${location.pathname === route.path ? 'active' : ''}`}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 + 0.3 }}
+            >
+              {route.label}
+            </motion.div>
           </Link>
         ))}
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 

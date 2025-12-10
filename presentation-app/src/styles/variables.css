@@ -1,0 +1,51 @@
+:root {
+  /* Primary Brand Colors */
+  --vd-primary: #0066CC;        /* Van Dyk Blue - main brand */
+  --vd-primary-dark: #004C99;   /* Darker blue for depth */
+  --vd-primary-light: #3385D6;  /* Lighter blue for highlights */
+
+  --vd-secondary: #00A651;      /* Van Dyk Green - recycling/sustainability */
+  --vd-secondary-dark: #008040; /* Darker green */
+  --vd-secondary-light: #33B86C; /* Lighter green */
+
+  --vd-accent: #FF6B35;         /* Industrial orange - CTAs */
+  --vd-accent-dark: #E55A2B;    /* Darker orange */
+
+  /* Neutrals */
+  --vd-neutral-dark: #1A1A1A;   /* Almost black backgrounds */
+  --vd-neutral: #2D2D2D;        /* Dark gray backgrounds */
+  --vd-neutral-light: #4A4A4A;  /* Medium gray */
+  --vd-gray: #717171;           /* Light gray text */
+  --vd-gray-light: #E5E5E5;     /* Very light gray borders */
+
+  --vd-white: #FFFFFF;          /* Pure white */
+  --vd-off-white: #F8F9FA;      /* Off-white backgrounds */
+
+  /* Gradients */
+  --vd-gradient-primary: linear-gradient(135deg, #0066CC 0%, #00A651 100%);
+  --vd-gradient-hero: linear-gradient(135deg, #004C99 0%, #0066CC 50%, #00A651 100%);
+  --vd-gradient-accent: linear-gradient(135deg, #FF6B35 0%, #0066CC 100%);
+  --vd-gradient-dark: linear-gradient(180deg, #1A1A1A 0%, #2D2D2D 100%);
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 15px rgba(0, 102, 204, 0.3);
+}

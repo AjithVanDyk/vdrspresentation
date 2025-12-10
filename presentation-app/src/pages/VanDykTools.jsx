@@ -1,7 +1,88 @@
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import mermaid from 'mermaid';
+import { motion, AnimatePresence } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
-import { Link } from 'react-router-dom';
+import flowchartsMd from '../data/TOOLS_FLOWCHARTS.md?raw';
+
+// Initialize mermaid
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  securityLevel: 'loose',
+  fontFamily: 'Outfit, sans-serif',
+  themeVariables: {
+    primaryColor: '#1a202c',
+    primaryTextColor: '#ffffff',
+    primaryBorderColor: '#FF6B00',
+    lineColor: '#00539B',
+    secondaryColor: '#2d3748',
+    tertiaryColor: '#2c5282',
+  }
+});
+
+const MermaidDiagram = ({ chart, id }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current && chart) {
+      containerRef.current.innerHTML = '<div class="loading-chart" style="color: var(--vdrs-blue)">Rendering chart...</div>';
+      
+      const timer = setTimeout(() => {
+        try {
+          mermaid.render(`mermaid-${id}`, chart)
+            .then(({ svg }) => {
+              if (containerRef.current) {
+                containerRef.current.innerHTML = svg;
+              }
+            })
+            .catch((error) => {
+              console.error('Mermaid render error:', error);
+              if (containerRef.current) containerRef.current.innerHTML = 'Error rendering chart';
+            });
+        } catch (error) {
+          console.error('Mermaid sync error:', error);
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [chart, id]);
+
+  return <div ref={containerRef} className="mermaid-diagram" style={{ background: 'rgba(255,255,255,0.9)', padding: '20px', borderRadius: '10px', overflowX: 'auto', display: 'flex', justifyContent: 'center' }} />;
+};
 
 function VanDykTools() {
+  const sections = useMemo(() => {
+    const lines = flowchartsMd.split('\n');
+    const parsedSections = [];
+    let currentSection = null;
+    let captureMermaid = false;
+    let mermaidContent = '';
+
+    lines.forEach((line) => {
+      if (line.startsWith('## ')) {
+        if (currentSection) parsedSections.push(currentSection);
+        currentSection = {
+          title: line.replace('## ', '').trim(),
+          content: [],
+          mermaid: null,
+        };
+      } else if (line.startsWith('```mermaid')) {
+        captureMermaid = true;
+        mermaidContent = '';
+      } else if (line.startsWith('```') && captureMermaid) {
+        captureMermaid = false;
+        if (currentSection) currentSection.mermaid = mermaidContent.trim();
+      } else if (captureMermaid) {
+        mermaidContent += line + '\n';
+      } else if (currentSection && line.trim() !== '' && !line.startsWith('---')) {
+        currentSection.content.push(line);
+      }
+    });
+    if (currentSection) parsedSections.push(currentSection);
+    return parsedSections.filter(s => s.title !== 'Summary');
+  }, []);
+
   return (
     <PresentationSlide>
       <div className="slide-header">
@@ -42,22 +123,22 @@ function VanDykTools() {
       </div>
 
       <div className="metrics-grid" style={{ margin: '15px 0' }}>
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'var(--vd-gradient-hero)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>20+</div>
           <div className="metric-label">Enterprise Apps</div>
         </div>
 
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'var(--vd-gradient-primary)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>50+</div>
           <div className="metric-label">Service Engineers</div>
         </div>
 
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #17a2b8 0%, #138496 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'linear-gradient(135deg, var(--vd-primary-light) 0%, var(--vd-primary) 100%)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>60+</div>
           <div className="metric-label">Company Users</div>
         </div>
 
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #ffc107 0%, #ff9800 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'var(--vd-gradient-accent)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>O(1)</div>
           <div className="metric-label">Optimized Logic</div>
         </div>
@@ -119,17 +200,42 @@ function VanDykTools() {
         </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-        <Link 
-          to="/vandyk-tools-detail"
-          className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-white font-bold text-lg hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2"
-          style={{ textDecoration: 'none' }}
-        >
-          <span>View Detailed Flowcharts</span>
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </Link>
+      {/* Detailed Flowcharts Section */}
+      <div style={{ marginTop: '30px' }}>
+        <h2 style={{ textAlign: 'center', color: 'var(--vdrs-blue)', marginBottom: '30px', fontSize: '2em' }}>Comprehensive Workflow Diagrams</h2>
+        <div style={{ display: 'grid', gap: '30px' }}>
+          {sections.map((section, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              style={{ 
+                background: 'rgba(255,255,255,0.5)', 
+                borderRadius: '15px', 
+                padding: '25px', 
+                boxShadow: '0 5px 15px rgba(0,0,0,0.05)',
+                border: '1px solid rgba(0,0,0,0.05)'
+              }}
+            >
+              <h3 style={{ color: 'var(--vdrs-blue)', fontSize: '1.5em', marginBottom: '10px', borderBottom: '2px solid var(--vdrs-orange)', paddingBottom: '10px', display: 'inline-block' }}>
+                {section.title}
+              </h3>
+              
+              {section.mermaid && (
+                <div style={{ marginTop: '20px', overflowX: 'auto' }}>
+                  <MermaidDiagram chart={section.mermaid} id={`chart-${index}`} />
+                </div>
+              )}
+              
+              <div style={{ marginTop: '20px', background: 'rgba(255,255,255,0.8)', padding: '15px', borderRadius: '8px' }}>
+                  {section.content.map((line, i) => (
+                    <p key={i} style={{ marginBottom: '5px', lineHeight: '1.4', color: '#444' }}>{line}</p>
+                  ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </PresentationSlide>
   );

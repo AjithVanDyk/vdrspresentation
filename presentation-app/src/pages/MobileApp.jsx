@@ -21,22 +21,22 @@ function MobileApp() {
       </div>
 
       <div className="metrics-grid" style={{ margin: '15px 0' }}>
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'var(--vd-gradient-hero)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>60</div>
           <div className="metric-label">Users</div>
         </div>
 
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'var(--vd-gradient-primary)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>100%</div>
           <div className="metric-label">Replica</div>
         </div>
 
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #17a2b8 0%, #138496 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'linear-gradient(135deg, var(--vd-primary-light) 0%, var(--vd-primary) 100%)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>PWA</div>
           <div className="metric-label">Offline Ready</div>
         </div>
 
-        <div className="metric-card" style={{ background: 'linear-gradient(135deg, #ffc107 0%, #ff9800 100%)', padding: '15px' }}>
+        <div className="metric-card" style={{ background: 'var(--vd-gradient-accent)', padding: '15px' }}>
           <div className="metric-value" style={{ fontSize: '2em' }}>React</div>
           <div className="metric-label">Native Feel</div>
         </div>

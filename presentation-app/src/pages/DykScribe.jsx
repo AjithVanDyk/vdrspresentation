@@ -26,7 +26,7 @@ function DykScribe() {
       >
         {/* Hero Section */}
         <motion.div variants={itemVariants} style={{ textAlign: 'center', marginBottom: '30px' }}>
-          <h1 style={{ 
+          <h1 className="dykscribe-title" style={{ 
             fontSize: '3.5em', 
             background: 'linear-gradient(to right, #ff7e5f, #feb47b)', 
             WebkitBackgroundClip: 'text', 
@@ -35,7 +35,7 @@ function DykScribe() {
           }}>
             DykScribe
           </h1>
-          <h2 style={{ fontSize: '1.5em', color: '#a0aec0', fontWeight: '300', margin: '0 0 25px 0' }}>
+          <h2 style={{ fontSize: '1.5em', fontWeight: '300', margin: '0 0 25px 0' }}>
             Knowledge Capture & Engineer Intelligence System
           </h2>
           
@@ -62,7 +62,7 @@ function DykScribe() {
             >
               <span>🚀</span> View Live Demo
             </a>
-            <div style={{ fontSize: '0.9em', color: '#718096', marginTop: '10px' }}>
+            <div style={{ fontSize: '0.9em', marginTop: '10px' }}>
               (Walkthrough available after clicking)
             </div>
           </div>
@@ -72,22 +72,22 @@ function DykScribe() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px', marginBottom: '25px' }}>
           
           {/* Problem & Solution Cards */}
-          <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>🧩</span>
               <h3 style={{ margin: 0, color: '#feb47b' }}>The Problem</h3>
             </div>
-            <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
+            <p style={{ lineHeight: '1.6' }}>
               When experienced engineers retire, their knowledge leaves with them. There was no easy way to save their troubleshooting tips for new employees.
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>💡</span>
-              <h3 style={{ margin: 0, color: '#68d391' }}>My Solution</h3>
+              <h3 style={{ margin: '0', color: '#68d391' }}>My Solution</h3>
             </div>
-            <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
+            <p style={{ lineHeight: '1.6' }}>
               I built a web app where engineers can record their answers by speaking or typing. It saves their knowledge so everyone can learn from it.
             </p>
           </motion.div>
@@ -135,7 +135,7 @@ function DykScribe() {
               <div className="metric-value" style={{ fontSize: '2.5em', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
                 {metric.isStatic ? metric.value : <AnimatedCounter value={metric.value} duration={2} />}{metric.suffix}
               </div>
-              <div className="metric-label" style={{ color: '#cbd5e0', fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px' }}>
                 {metric.label}
               </div>
             </div>
@@ -145,7 +145,7 @@ function DykScribe() {
         {/* Features & Impact Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h4>
+            <h4 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '🎙️', text: 'Voice Recording: Speak instead of type' },
@@ -153,7 +153,7 @@ function DykScribe() {
                 { icon: '🔍', text: 'Easy Search: Instant answers' },
                 { icon: '🛡️', text: 'SQL Database: Secure storage' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
                 </li>
               ))}
@@ -161,14 +161,14 @@ function DykScribe() {
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h4>
+            <h4 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '🧠', text: 'Save Knowledge: Retain expertise' },
                 { icon: '🚀', text: 'Train Faster: "Shared brain" for new hires' },
                 { icon: '⚡', text: 'Better Service: Faster fixes' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
                 </li>
               ))}
