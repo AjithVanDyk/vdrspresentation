@@ -10,12 +10,12 @@ function VDRS360() {
 
       <div className="two-column" style={{ margin: '15px 0', gap: '20px' }}>
         <div className="challenge-box" style={{ margin: 0 }}>
-          <h4>The Problem</h4>
+          <h3>The Problem</h3>
           <p>Equipment data scattered across multiple systems. No centralized view of machine information, maintenance history, or operational status. Manual data compilation was time-consuming.</p>
         </div>
 
         <div className="solution-box" style={{ margin: 0 }}>
-          <h4>My Solution</h4>
+          <h3>My Solution</h3>
           <p>Built a sophisticated Excel-based Asset Management Interface (AMI) that fetches and updates more than 10,000 lines of data from SQL databases. Excel on steroids!</p>
         </div>
       </div>
@@ -50,7 +50,7 @@ function VDRS360() {
 
       <div className="two-column" style={{ margin: '15px 0', gap: '20px' }}>
         <div className="tech-list" style={{ margin: 0, padding: '15px' }}>
-          <h4 style={{ margin: '5px 0' }}>System Capabilities</h4>
+          <h3 style={{ margin: '5px 0' }}>System Capabilities</h3>
           <ul style={{ fontSize: '0.9em' }}>
             <li><strong>SQL Integration:</strong> Direct connection to databases</li>
             <li><strong>Two-Way Sync:</strong> Fetch AND update records</li>
@@ -60,7 +60,7 @@ function VDRS360() {
         </div>
 
         <div className="challenge-box" style={{ margin: 0, padding: '15px' }}>
-          <h4 style={{ margin: '5px 0' }}>Current Status</h4>
+          <h3 style={{ margin: '5px 0' }}>Current Status</h3>
           <p style={{ fontSize: '0.95em' }}>System fully developed and tested with 10K+ lines of SQL data integration. Demonstrated ability to build complex Excel-based systems with database integration.</p>
         </div>
       </div>

@@ -37,9 +37,9 @@ function Summary() {
 
       {/* Career Journey Section */}
       <div className="journey-box" style={{ padding: '20px', margin: '15px 0', background: 'var(--vd-gradient-hero)' }}>
-        <h4 style={{ color: 'white', marginBottom: '15px', fontSize: '1.5em' }}>
+        <h2 style={{ color: 'white', marginBottom: '15px', fontSize: '1.5em' }}>
           Mechatronics Engineer → Operations Manager → Manufacturing Engineer → After Sales Intern
-        </h4>
+        </h2>
         <p style={{ color: 'white', fontSize: '1.1em' }}>
           "My journey started on the shop floor, learning how machines work. Then I moved to understanding the backend of operations. Now, I use that deep operational knowledge to build custom AI systems. Logic is key—understanding the process first allows me to use AI effectively to streamline operations, improve efficiency, and increase profits."
         </p>
@@ -78,9 +78,9 @@ function Summary() {
 
       {/* Culture Section */}
       <div style={{ margin: '30px 0' }}>
-        <h3 style={{ borderBottom: '2px solid var(--vdrs-orange)', paddingBottom: '10px', marginBottom: '20px' }}>
+        <h2 style={{ borderBottom: '2px solid var(--vdrs-orange)', paddingBottom: '10px', marginBottom: '20px' }}>
           More Than Just Work - A Family
-        </h3>
+        </h2>
         
         <div className="image-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px', marginBottom: '20px' }}>
           {eventImages.map((src, index) => (
@@ -102,7 +102,7 @@ function Summary() {
       {/* Acknowledgments Section */}
       <div className="two-column" style={{ margin: '15px 0', gap: '20px' }}>
         <div style={{ margin: 0, padding: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
-          <h4 style={{ margin: '0 0 15px 0', color: 'var(--vdrs-blue)' }}>Special Thanks</h4>
+          <h3 style={{ margin: '0 0 15px 0', color: 'var(--vdrs-blue)' }}>Special Thanks</h3>
           <ul style={{ fontSize: '0.95em', color: '#333', listStyle: 'none', padding: 0 }}>
             <li style={{ marginBottom: '10px', color: '#333' }}>
               <strong>Ginny, Victoria, & Paul:</strong> Thank you for being so open, welcoming, and easy to work with. You made me feel at home.
@@ -120,7 +120,7 @@ function Summary() {
         </div>
 
         <div style={{ margin: 0, padding: '20px', background: 'rgba(255,255,255,0.95)', borderRadius: '8px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
-          <h4 style={{ margin: '0 0 15px 0', color: 'var(--vdrs-blue)' }}>The Team</h4>
+          <h3 style={{ margin: '0 0 15px 0', color: 'var(--vdrs-blue)' }}>The Team</h3>
           <ul style={{ fontSize: '0.95em', color: '#333', listStyle: 'none', padding: 0 }}>
             <li style={{ marginBottom: '10px', color: '#333' }}>
               <strong>Daksh:</strong> Thanks for helping me out so many times.

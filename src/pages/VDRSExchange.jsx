@@ -69,7 +69,7 @@ function VDRSExchange() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>⚠️</span>
-              <h3 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h3>
+              <h2 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
               Suppliers needed a secure way to upload specific project files (Schematics, Manuals) without relying on insecure emails or complex FTP clients.
@@ -79,7 +79,7 @@ function VDRSExchange() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>🛡️</span>
-              <h3 style={{ margin: 0, color: '#68d391' }}>My Solution</h3>
+              <h2 style={{ margin: 0, color: '#68d391' }}>My Solution</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
               Built a secure web portal with OTP authentication. Suppliers can easily upload files into 5 specific categories, which are automatically organized into our internal Azure Files structure.
@@ -115,7 +115,7 @@ function VDRSExchange() {
         {/* Features & Impact Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h4>
+            <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '🔐', text: 'Auth: OTP with SHA-256 Hashing' },
@@ -131,7 +131,7 @@ function VDRSExchange() {
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Workflow Impact</h4>
+            <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Workflow Impact</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '📂', text: 'Organization: Auto-sorted by Project' },

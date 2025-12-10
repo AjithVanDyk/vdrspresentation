@@ -36,7 +36,7 @@ function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            Transforming Operations at Van Dyk Recycling Solutions
+            Transforming After Sales/Service Operations and Streamlining it
           </motion.h2>
           <div className="hero-subtitle">Ajith Srikanth | Northeastern University</div>
         </motion.div>
@@ -50,12 +50,12 @@ function Home() {
             whileHover={{ scale: 1.05 }}
           />
           <div className="profile-text">
-            <h1 style={{ margin: 0, fontSize: '2.5rem', color: 'var(--vd-primary-dark)' }}>
+            <h2 style={{ margin: 0, fontSize: '2.5rem', color: 'var(--vd-primary-dark)' }}>
               Transforming Operations
-            </h1>
-            <h2 style={{ margin: '5px 0 0 0', fontSize: '1.4rem', color: 'var(--vd-neutral)' }}>
-              8-Month Technical Internship Journey
             </h2>
+            <h3 style={{ margin: '5px 0 0 0', fontSize: '1.4rem', color: 'var(--vd-neutral)' }}>
+              8-Month Technical Internship Journey
+            </h3>
           </div>
         </motion.div>
 
@@ -117,12 +117,12 @@ function Home() {
 
         {/* Journey */}
         <motion.div className="journey-section" variants={fadeInUp}>
-          <div className="journey-title">
+          <h2 className="journey-title">
             🌏 Mechatronics → Operations → Manufacturing → After Sales
-          </div>
+          </h2>
           <div className="journey-grid">
             <div className="journey-column">
-              <h4>🇮🇳 India (2022-2024)</h4>
+              <h3>🇮🇳 India (2022-2024)</h3>
               <ul>
                 <li>Started on Shop Floor (Mechatronics)</li>
                 <li>Learned Backend of Operations</li>
@@ -130,7 +130,7 @@ function Home() {
               </ul>
             </div>
             <div className="journey-column">
-              <h4>🇺🇸 United States (2024-2025)</h4>
+              <h3>🇺🇸 United States (2024-2025)</h3>
               <ul>
                 <li>Northeastern University Master's</li>
                 <li>Building Custom AI Systems</li>

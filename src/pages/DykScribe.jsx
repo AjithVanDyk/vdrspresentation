@@ -75,7 +75,7 @@ function DykScribe() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>🧩</span>
-              <h3 style={{ margin: 0, color: '#feb47b' }}>The Problem</h3>
+              <h2 style={{ margin: 0, color: '#feb47b' }}>The Problem</h2>
             </div>
             <p style={{ lineHeight: '1.6' }}>
               When experienced engineers retire, their knowledge leaves with them. There was no easy way to save their troubleshooting tips for new employees.
@@ -85,7 +85,7 @@ function DykScribe() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>💡</span>
-              <h3 style={{ margin: '0', color: '#68d391' }}>My Solution</h3>
+              <h2 style={{ margin: '0', color: '#68d391' }}>My Solution</h2>
             </div>
             <p style={{ lineHeight: '1.6' }}>
               I built a web app where engineers can record their answers by speaking or typing. It saves their knowledge so everyone can learn from it.
@@ -109,7 +109,7 @@ function DykScribe() {
         >
           <span style={{ fontSize: '2.5em' }}>🤔</span>
           <div>
-            <h4 style={{ margin: '0 0 5px 0', color: '#63b3ed', fontSize: '1.2em' }}>What's in a Name?</h4>
+            <h3 style={{ margin: '0 0 5px 0', color: '#63b3ed', fontSize: '1.2em' }}>What's in a Name?</h3>
             <p style={{ margin: 0, fontSize: '1.1em', color: '#bee3f8' }}>
               <strong>"DykScribe"</strong> = <strong>"Van Dyk"</strong> + <strong>"Describe"</strong>. 
               It's about describing technical problems to build a shared brain for the company.
@@ -145,7 +145,7 @@ function DykScribe() {
         {/* Features & Impact Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h4>
+            <h2 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '🎙️', text: 'Voice Recording: Speak instead of type' },
@@ -161,7 +161,7 @@ function DykScribe() {
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h4>
+            <h2 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '🧠', text: 'Save Knowledge: Retain expertise' },

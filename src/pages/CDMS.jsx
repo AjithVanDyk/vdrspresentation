@@ -75,7 +75,7 @@ function CDMS() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>📧</span>
-              <h3 style={{ margin: 0, color: '#feb47b' }}>The Problem</h3>
+              <h2 style={{ margin: 0, color: '#feb47b' }}>The Problem</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
               We had an old "Contracts App" that wasn't working well. Suppliers were emailing important files, which was messy and insecure.
@@ -85,7 +85,7 @@ function CDMS() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>🛡️</span>
-              <h3 style={{ margin: 0, color: '#68d391' }}>My Solution</h3>
+              <h2 style={{ margin: 0, color: '#68d391' }}>My Solution</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
               I built a secure website where suppliers can upload files directly. Even though I was new to React and Azure, I learned quickly and delivered a robust solution.
@@ -121,7 +121,7 @@ function CDMS() {
         {/* Features & Impact Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h4>
+            <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '⚛️', text: 'Frontend: React & Material-UI' },
@@ -138,7 +138,7 @@ function CDMS() {
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Enterprise Features</h4>
+            <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Enterprise Features</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '👥', text: 'RBAC: Supplier vs. Employee Views' },

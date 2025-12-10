@@ -69,7 +69,7 @@ function CostIQ() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>📉</span>
-              <h3 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h3>
+              <h2 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
               Quoting service travel costs was a manual, estimation-heavy process. We needed a way to accurately predict multi-leg trip costs (flights, lodging, ground) instantly.
@@ -79,7 +79,7 @@ function CostIQ() {
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
               <span style={{ fontSize: '2em' }}>🤖</span>
-              <h3 style={{ margin: 0, color: '#68d391' }}>My Solution</h3>
+              <h2 style={{ margin: 0, color: '#68d391' }}>My Solution</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
               Built a Flask-based ML pipeline with 3 specialized models for Airfare, Lodging, and Mileage. It uses SQL data to predict precise service costs for customer quotes.
@@ -115,7 +115,7 @@ function CostIQ() {
         {/* Features & Impact Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h4>
+            <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '🐍', text: 'Backend: Flask & Python' },
@@ -131,7 +131,7 @@ function CostIQ() {
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h4>
+            <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: '💰', text: 'Revenue: Accurate quoting prevents loss' },
