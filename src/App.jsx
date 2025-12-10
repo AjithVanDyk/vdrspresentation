@@ -16,7 +16,6 @@ import VanDykToolsDetail from './pages/VanDykToolsDetail';
 import CostIQ from './pages/CostIQ';
 import VDRSExchange from './pages/VDRSExchange';
 import Customers from './pages/Customers';
-import EasterEggManager from './components/EasterEggManager';
 
 // Theme Configuration
 const LIGHT_THEME_ROUTES = ['/rag-system', '/dykscribe', '/vdrs360', '/mobile-app'];
@@ -54,7 +53,6 @@ function AppWrapper() {
       <div className="bg-gradient" style={{
         transform: `translate(${mousePosition.x * -10}px, ${mousePosition.y * -10}px) scale(1.05)`
       }} />
-      <EasterEggManager />
       <AppContent />
     </div>
   );

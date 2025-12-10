@@ -1,12 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
+import { Icon } from '../components/Icons';
 
 function Customers() {
   const customers = [
-    { name: "WM Indianapolis", location: "Indianapolis, IN", icon: "🏢" },
-    { name: "Tomra Schenedy", location: "Schenectady, NY", icon: "♻️" },
-    { name: "WM Fort Worth", location: "Fort Worth, TX", icon: "🤠" }
+    { name: "Athens Environmental Services", location: "Was Crown Disposal, Community Recycling", icon: "recycle" },
+    { name: "WM St. Paul", location: "Ramsey", icon: "building" },
+    { name: "FCC Houston", location: "Houston, TX", icon: "building" },
+    { name: "Marin Resource Recovery", location: "Marin County, CA", icon: "recycle" },
+    { name: "WM Indianapolis 2025 Stout Field", location: "Indianapolis, IN (ex-Rays Trash)", icon: "building" },
+    { name: "WM Menasha", location: "Paper Valley", icon: "building" },
+    { name: "Tomra New York Recycling", location: "Schenectady, NY", icon: "recycle" },
+    { name: "Republic Services Pittsburgh", location: "Pittsburgh, PA (was Recycle Source)", icon: "recycle" },
+    { name: "Sort Folders", location: "Various Locations", icon: "folder" },
+    { name: "G Drive Child Parts", location: "Subassembly Drawings", icon: "folder" },
+    { name: "WM Dumfries", location: "Dumfries, VA", icon: "building" },
+    { name: "WM Napnee", location: "Napnee, IN", icon: "building" },
+    { name: "FCC Placer County", location: "Placer County, CA", icon: "building" },
+    { name: "WM Mesquite Creek", location: "Mesquite Creek", icon: "building" },
+    { name: "City Carting Stamford", location: "Stamford, CT", icon: "building" }
   ];
 
   return (
@@ -46,7 +59,9 @@ function Customers() {
               justifyContent: 'center'
             }}
           >
-            <div style={{ fontSize: '4em', marginBottom: '20px' }}>{customer.icon}</div>
+            <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Icon name={customer.icon} size={48} color="var(--vd-accent)" />
+            </div>
             <h3 style={{ margin: '0 0 10px 0', fontSize: '1.8em', color: 'var(--vd-off-white)', fontWeight: 'bold' }}>
               {customer.name}
             </h3>

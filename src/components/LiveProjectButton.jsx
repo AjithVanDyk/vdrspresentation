@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Icon } from './Icons';
 import './LiveProjectButton.css';
 
 function LiveProjectButton({ url, label = "View Live Project" }) {
@@ -14,7 +15,7 @@ function LiveProjectButton({ url, label = "View Live Project" }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <span className="btn-icon">🚀</span>
+      <span className="btn-icon"><Icon name="rocket" size={18} color="currentColor" /></span>
       <span className="btn-text">{label}</span>
       <span className="btn-arrow">→</span>
     </motion.a>

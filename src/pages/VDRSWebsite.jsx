@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { Icon } from '../components/Icons';
 
 function VDRSWebsite() {
   const containerVariants = {
@@ -60,7 +61,7 @@ function VDRSWebsite() {
                 transition: 'transform 0.2s, box-shadow 0.2s'
               }}
             >
-              <span>🚀</span> View Live Website
+              <Icon name="rocket" size={20} color="white" /> View Live Website
             </a>
           </div>
         </motion.div>
@@ -71,21 +72,21 @@ function VDRSWebsite() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>🕸️</span>
+              <Icon name="web" size={32} color="#feb47b" />
               <h3 style={{ margin: 0, color: '#feb47b' }}>The Problem</h3>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              The existing website was outdated, had limited information, and provided a poor mobile experience. It didn't reflect Van Dyk's position as a market leader.
+              The existing corporate website was outdated, contained limited information about services and capabilities, and provided a poor mobile user experience. The design and functionality did not reflect Van Dyk's position as an industry leader in recycling solutions, potentially impacting brand perception and customer engagement.
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>✨</span>
+              <Icon name="zap" size={32} color="#68d391" />
               <h3 style={{ margin: 0, color: '#68d391' }}>My Solution</h3>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              Built a modern, responsive website using React 18. Features professional design, fast loading times, smooth animations, and works perfectly on all devices.
+              Built a modern, fully responsive corporate website using React 18 and TypeScript. Features include professional design aligned with brand identity, optimized performance with 100 Lighthouse score, smooth Framer Motion animations, comprehensive SEO optimization, and flawless mobile responsiveness. The site works seamlessly across all devices and browsers, providing an exceptional user experience that reflects Van Dyk's market leadership.
             </p>
           </motion.div>
         </div>
@@ -121,13 +122,13 @@ function VDRSWebsite() {
             <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technologies Learned</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '⚛️', text: 'React 18 & TypeScript: Robust SPAs' },
-                { icon: '🎨', text: 'Tailwind CSS: Rapid styling' },
-                { icon: '🎬', text: 'Framer Motion: Professional animations' },
-                { icon: '🚀', text: 'SEO & Performance: Optimization' }
+                { icon: 'atom', text: 'React 18 & TypeScript: Robust SPAs' },
+                { icon: 'web', text: 'Tailwind CSS: Rapid styling' },
+                { icon: 'zap', text: 'Framer Motion: Professional animations' },
+                { icon: 'rocket', text: 'SEO & Performance: Optimization' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>
@@ -137,12 +138,12 @@ function VDRSWebsite() {
             <h4 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '🌟', text: 'Brand Elevation: Reflects market leadership' },
-                { icon: '📱', text: 'Accessibility: Mobile-friendly information' },
-                { icon: '🌍', text: 'Global Reach: Fast loading worldwide' }
+                { icon: 'web', text: 'Brand Elevation: Reflects market leadership' },
+                { icon: 'web', text: 'Accessibility: Mobile-friendly information' },
+                { icon: 'globe', text: 'Global Reach: Fast loading worldwide' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>

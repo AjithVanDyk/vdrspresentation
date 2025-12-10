@@ -1,22 +1,10 @@
 import { motion } from 'framer-motion';
 import AnimatedCounter from '../components/AnimatedCounter';
 import PresentationSlide from '../components/PresentationSlide';
+import { Icon } from '../components/Icons';
+import ClickableImage from '../components/ClickableImage';
 
 function Summary() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
 
   const eventImages = [
     "/images/exp/Image (4).jpg",
@@ -41,7 +29,7 @@ function Summary() {
           Mechatronics Engineer → Operations Manager → Manufacturing Engineer → After Sales Intern
         </h2>
         <p style={{ color: 'white', fontSize: '1.1em' }}>
-          "My journey started on the shop floor, learning how machines work. Then I moved to understanding the backend of operations. Now, I use that deep operational knowledge to build custom AI systems. Logic is key—understanding the process first allows me to use AI effectively to streamline operations, improve efficiency, and increase profits."
+          "My professional journey began on the shop floor, where I gained hands-on experience understanding how industrial machinery operates. This foundation led me to explore the backend of operations, learning how systems integrate and function at an organizational level. Today, I leverage that comprehensive operational knowledge to architect and build custom AI systems that solve real business challenges. The key insight is that logic precedes technology—by thoroughly understanding processes first, I can strategically apply AI to streamline operations, enhance efficiency, and drive measurable profit improvements."
         </p>
       </div>
 
@@ -89,9 +77,11 @@ function Summary() {
               whileHover={{ scale: 1.05 }}
               style={{ borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }}
             >
-              <img 
-                src={src} 
+              <ClickableImage
+                src={src}
                 alt={`Van Dyk Event ${index + 1}`}
+                images={eventImages.map(img => ({ src: img, alt: `Van Dyk Event ${eventImages.indexOf(img) + 1}` }))}
+                index={index}
                 style={{ width: '100%', height: '120px', objectFit: 'cover' }}
               />
             </motion.div>
@@ -184,7 +174,7 @@ function Summary() {
               boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
             }}
           >
-            <span style={{ fontSize: '1.5em' }}>✉️</span>
+            <Icon name="mail" size={20} color="#333" />
             <span>Email Me</span>
           </a>
           
@@ -207,7 +197,7 @@ function Summary() {
               boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
             }}
           >
-            <span style={{ fontSize: '1.5em' }}>🔗</span>
+            <Icon name="link" size={20} color="white" />
             <span>LinkedIn</span>
           </a>
         </div>

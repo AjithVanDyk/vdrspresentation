@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { Icon } from '../components/Icons';
 
 function VDRSExchange() {
   const containerVariants = {
@@ -39,8 +40,11 @@ function VDRSExchange() {
             Enterprise Secure File Exchange
           </h2>
           
-          <div style={{ display: 'inline-block' }}>
-            <div 
+          <div style={{ display: 'inline-block', marginBottom: '20px' }}>
+            <a 
+              href="https://brave-bay-025aaec0f.3.azurestaticapps.net/" 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="live-project-btn"
               style={{ 
                 display: 'inline-flex',
@@ -54,11 +58,11 @@ function VDRSExchange() {
                 textDecoration: 'none',
                 fontWeight: 'bold',
                 boxShadow: '0 10px 20px rgba(79, 172, 254, 0.4)',
-                cursor: 'default'
+                transition: 'transform 0.2s, box-shadow 0.2s'
               }}
             >
-              <span>🔒</span> Secure Supplier Portal
-            </div>
+              <Icon name="rocket" size={20} color="white" /> View Enterprise Portal
+            </a>
           </div>
         </motion.div>
 
@@ -68,7 +72,7 @@ function VDRSExchange() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>⚠️</span>
+              <Icon name="warning" size={32} color="#feb47b" />
               <h2 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
@@ -78,7 +82,7 @@ function VDRSExchange() {
 
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>🛡️</span>
+              <Icon name="shield" size={32} color="#68d391" />
               <h2 style={{ margin: 0, color: '#68d391' }}>My Solution</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
@@ -118,13 +122,13 @@ function VDRSExchange() {
             <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '🔐', text: 'Auth: OTP with SHA-256 Hashing' },
-                { icon: '🗄️', text: 'Backend: Flask & SQL Server' },
-                { icon: '☁️', text: 'Storage: Azure Files (FTP Mirror)' },
-                { icon: '⚛️', text: 'Frontend: React & Material-UI' }
+                { icon: 'lock', text: 'Auth: OTP with SHA-256 Hashing' },
+                { icon: 'database', text: 'Backend: Flask & SQL Server' },
+                { icon: 'cloud', text: 'Storage: Azure Files (FTP Mirror)' },
+                { icon: 'atom', text: 'Frontend: React & Material-UI' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>
@@ -134,12 +138,12 @@ function VDRSExchange() {
             <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Workflow Impact</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '📂', text: 'Organization: Auto-sorted by Project' },
-                { icon: '✅', text: 'Clarity: 5 Distinct File Categories' },
-                { icon: '🔄', text: 'Sync: Instant Internal Access' }
+                { icon: 'folder', text: 'Organization: Auto-sorted by Project' },
+                { icon: 'check', text: 'Clarity: 5 Distinct File Categories' },
+                { icon: 'refresh', text: 'Sync: Instant Internal Access' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>

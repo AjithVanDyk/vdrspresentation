@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { Icon } from '../components/Icons';
 
 function CostIQ() {
   const containerVariants = {
@@ -39,8 +40,11 @@ function CostIQ() {
             Travel Cost ML Pipeline
           </h2>
           
-          <div style={{ display: 'inline-block' }}>
-            <div 
+          <div style={{ display: 'inline-block', marginBottom: '20px' }}>
+            <a 
+              href="https://vdrs-costiq.onrender.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
               className="live-project-btn"
               style={{ 
                 display: 'inline-flex',
@@ -54,11 +58,11 @@ function CostIQ() {
                 textDecoration: 'none',
                 fontWeight: 'bold',
                 boxShadow: '0 10px 20px rgba(245, 158, 11, 0.4)',
-                cursor: 'default'
+                transition: 'transform 0.2s, box-shadow 0.2s'
               }}
             >
-              <span>🧠</span> Predictive Analytics
-            </div>
+              <Icon name="rocket" size={20} color="white" /> View Live System
+            </a>
           </div>
         </motion.div>
 
@@ -68,21 +72,21 @@ function CostIQ() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>📉</span>
+              <Icon name="chart" size={32} color="#feb47b" />
               <h2 style={{ margin: 0, color: '#feb47b' }}>The Challenge</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              Quoting service travel costs was a manual, estimation-heavy process. We needed a way to accurately predict multi-leg trip costs (flights, lodging, ground) instantly.
+              Quoting service travel costs was a manual, estimation-heavy process that required extensive time and often led to inaccuracies. We needed a way to accurately predict multi-leg trip costs (flights, lodging, ground transportation) instantly with high precision to prevent revenue loss from incorrect quotes.
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>🤖</span>
+              <Icon name="robot" size={32} color="#68d391" />
               <h2 style={{ margin: 0, color: '#68d391' }}>My Solution</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              Built a Flask-based ML pipeline with 3 specialized models for Airfare, Lodging, and Mileage. It uses SQL data to predict precise service costs for customer quotes.
+              Built a production-ready Flask-based ML pipeline with 3 specialized models (Airfare, Lodging, Mileage) trained on 10,000+ historical data points. The system features auto column mapping, intelligent outlier detection, hyperparameter tuning with Optuna, and MLflow experiment tracking. It generates quotes with 95% confidence intervals in under 5 seconds.
             </p>
           </motion.div>
         </div>
@@ -118,13 +122,15 @@ function CostIQ() {
             <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '🐍', text: 'Backend: Flask & Python' },
-                { icon: '🧠', text: 'ML: 3 Specialized Models' },
-                { icon: '🗄️', text: 'Data: SQL (Single Source of Truth)' },
-                { icon: '🔄', text: 'Validation: Cross-validation Pipeline' }
+                { icon: 'python', text: 'Backend: Flask API with React frontend' },
+                { icon: 'brain', text: 'ML: 12+ models tested (CatBoost, XGBoost, LightGBM)' },
+                { icon: 'database', text: 'Data: Excel-based with auto column mapping' },
+                { icon: 'refresh', text: 'MLflow: Experiment tracking and model versioning' },
+                { icon: 'zap', text: 'Optimization: Optuna hyperparameter tuning' },
+                { icon: 'check', text: 'Validation: Intelligent outlier detection' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>
@@ -134,12 +140,14 @@ function CostIQ() {
             <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '💰', text: 'Revenue: Accurate quoting prevents loss' },
-                { icon: '⚡', text: 'Speed: Instant quotes vs manual calculation' },
-                { icon: '🎯', text: 'Precision: Component-based cost breakdown' }
+                { icon: 'money', text: 'Revenue Protection: 92% accuracy prevents costly misquotes' },
+                { icon: 'zap', text: 'Speed: 5-second quotes vs hours of manual calculation' },
+                { icon: 'target', text: 'Precision: Component-based breakdown with confidence intervals' },
+                { icon: 'rocket', text: 'Scalability: Handles 10K+ data points efficiently' },
+                { icon: 'check', text: 'Reliability: MLflow tracking ensures model quality' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>

@@ -1,4 +1,5 @@
 import PresentationSlide from '../components/PresentationSlide';
+import ClickableImage from '../components/ClickableImage';
 
 function VDRS360() {
   return (
@@ -11,19 +12,35 @@ function VDRS360() {
       <div className="two-column" style={{ margin: '15px 0', gap: '20px' }}>
         <div className="challenge-box" style={{ margin: 0 }}>
           <h3>The Problem</h3>
-          <p>Equipment data scattered across multiple systems. No centralized view of machine information, maintenance history, or operational status. Manual data compilation was time-consuming.</p>
+          <p>Equipment data was scattered across multiple disconnected systems with no unified interface. Field engineers and operations teams lacked a centralized view of machine information, maintenance history, operational status, and lifecycle data. Manual data compilation from various sources was extremely time-consuming and error-prone, hindering efficient equipment management and decision-making.</p>
         </div>
 
         <div className="solution-box" style={{ margin: 0 }}>
           <h3>My Solution</h3>
-          <p>Built a sophisticated Excel-based Asset Management Interface (AMI) that fetches and updates more than 10,000 lines of data from SQL databases. Excel on steroids!</p>
+          <p>Built a sophisticated Excel-based Asset Management Interface (AMI) that establishes direct two-way communication with SQL Server databases. The system fetches and updates more than 10,000 lines of equipment data in real-time, providing a familiar Excel interface with powerful database integration. Custom VBA macros enable automated data synchronization, validation, and reporting, transforming Excel into a robust equipment management platform.</p>
         </div>
       </div>
 
       <div className="image-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px', margin: '15px 0' }}>
-        <img src="/images/vdrsex/Screenshot 2025-10-29 175510.png" alt="VDRS360 Dashboard" className="grid-image" style={{ height: '150px' }} />
-        <img src="/images/vdrsex/Screenshot 2025-10-30 104013.png" alt="Data Management" className="grid-image" style={{ height: '150px' }} />
-        <img src="/images/vdrsex/Screenshot 2025-10-30 153958.png" alt="Equipment View" className="grid-image" style={{ height: '150px' }} />
+        {[
+          { src: "/images/vdrsex/Screenshot 2025-10-29 175510.png", alt: "VDRS360 Dashboard" },
+          { src: "/images/vdrsex/Screenshot 2025-10-30 104013.png", alt: "Data Management" },
+          { src: "/images/vdrsex/Screenshot 2025-10-30 153958.png", alt: "Equipment View" }
+        ].map((img, index) => (
+          <ClickableImage
+            key={index}
+            src={img.src}
+            alt={img.alt}
+            images={[
+              { src: "/images/vdrsex/Screenshot 2025-10-29 175510.png", alt: "VDRS360 Dashboard" },
+              { src: "/images/vdrsex/Screenshot 2025-10-30 104013.png", alt: "Data Management" },
+              { src: "/images/vdrsex/Screenshot 2025-10-30 153958.png", alt: "Equipment View" }
+            ]}
+            index={index}
+            className="grid-image"
+            style={{ height: '150px', width: '100%', objectFit: 'cover', borderRadius: '8px' }}
+          />
+        ))}
       </div>
 
       <div className="metrics-grid" style={{ margin: '15px 0' }}>
@@ -52,16 +69,18 @@ function VDRS360() {
         <div className="tech-list" style={{ margin: 0, padding: '15px' }}>
           <h3 style={{ margin: '5px 0' }}>System Capabilities</h3>
           <ul style={{ fontSize: '0.9em' }}>
-            <li><strong>SQL Integration:</strong> Direct connection to databases</li>
-            <li><strong>Two-Way Sync:</strong> Fetch AND update records</li>
-            <li><strong>Real-Time Data:</strong> Live connection to SQL server</li>
-            <li><strong>Automation:</strong> Custom VBA macros</li>
+            <li><strong>SQL Server Integration:</strong> Direct ODBC connection for real-time data access</li>
+            <li><strong>Bidirectional Sync:</strong> Fetch equipment data AND update records back to database</li>
+            <li><strong>Real-Time Updates:</strong> Live connection ensures data accuracy and currency</li>
+            <li><strong>VBA Automation:</strong> Custom macros for data validation, formatting, and reporting</li>
+            <li><strong>Excel Interface:</strong> Familiar spreadsheet environment with database power</li>
+            <li><strong>Scalability:</strong> Handles 10,000+ records efficiently with optimized queries</li>
           </ul>
         </div>
 
         <div className="challenge-box" style={{ margin: 0, padding: '15px' }}>
           <h3 style={{ margin: '5px 0' }}>Current Status</h3>
-          <p style={{ fontSize: '0.95em' }}>System fully developed and tested with 10K+ lines of SQL data integration. Demonstrated ability to build complex Excel-based systems with database integration.</p>
+          <p style={{ fontSize: '0.95em' }}>System fully developed and tested with 10,000+ lines of SQL data integration. Successfully demonstrated the ability to build enterprise-grade Excel-based systems that bridge the gap between traditional spreadsheet workflows and modern database architectures, providing users with powerful tools without requiring new software training.</p>
         </div>
       </div>
     </PresentationSlide>

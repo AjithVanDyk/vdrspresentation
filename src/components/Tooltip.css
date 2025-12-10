@@ -1,0 +1,100 @@
+.tooltip-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;
+  border-bottom: 1px dotted currentColor;
+  color: inherit;
+}
+
+.tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.tooltip-wrapper:hover .tooltip-icon {
+  opacity: 1;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 8px;
+  min-width: 250px;
+  max-width: 350px;
+  background: white;
+  color: #333;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  pointer-events: none;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: white;
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.tooltip-header strong {
+  font-size: 0.95em;
+}
+
+.tooltip-body {
+  color: #4b5563;
+  font-size: 0.9em;
+}
+
+/* Dark mode support */
+.dark-mode .tooltip-content {
+  background: #1f2937;
+  color: #f3f4f6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .tooltip-content::after {
+  border-top-color: #1f2937;
+}
+
+.dark-mode .tooltip-header {
+  border-bottom-color: #374151;
+  color: #f3f4f6;
+}
+
+.dark-mode .tooltip-body {
+  color: #d1d5db;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .tooltip-content {
+    min-width: 200px;
+    max-width: 280px;
+    font-size: 0.85em;
+    padding: 10px 12px;
+  }
+}
+

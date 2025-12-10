@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { Icon } from '../components/Icons';
 
 function DykScribe() {
   const containerVariants = {
@@ -60,7 +61,7 @@ function DykScribe() {
                 transition: 'transform 0.2s, box-shadow 0.2s'
               }}
             >
-              <span>🚀</span> View Live Demo
+              <Icon name="rocket" size={20} color="white" /> View Live Demo
             </a>
             <div style={{ fontSize: '0.9em', marginTop: '10px' }}>
               (Walkthrough available after clicking)
@@ -74,21 +75,21 @@ function DykScribe() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>🧩</span>
+              <Icon name="puzzle" size={32} color="#feb47b" />
               <h2 style={{ margin: 0, color: '#feb47b' }}>The Problem</h2>
             </div>
-            <p style={{ lineHeight: '1.6' }}>
-              When experienced engineers retire, their knowledge leaves with them. There was no easy way to save their troubleshooting tips for new employees.
+            <p style={{ lineHeight: '1.6', color: '#e2e8f0' }}>
+              When experienced engineers retire or move on, their invaluable troubleshooting knowledge and field expertise leaves with them. There was no systematic way to capture, store, and share this institutional knowledge with new employees, leading to repeated mistakes and slower problem resolution.
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>💡</span>
+              <Icon name="lightbulb" size={32} color="#68d391" />
               <h2 style={{ margin: '0', color: '#68d391' }}>My Solution</h2>
             </div>
-            <p style={{ lineHeight: '1.6' }}>
-              I built a web app where engineers can record their answers by speaking or typing. It saves their knowledge so everyone can learn from it.
+            <p style={{ lineHeight: '1.6', color: '#e2e8f0' }}>
+              Built a sophisticated Streamlit web application that enables engineers to capture knowledge through dual input methods: voice recording with AI transcription (OpenAI Whisper) or manual Q&A entry. The system uses GPT-4 for intelligent Q&A extraction, integrates with SQL Server for secure storage, and includes equipment management, PDF manual uploads, and a gamified points system to encourage knowledge sharing.
             </p>
           </motion.div>
         </div>
@@ -107,11 +108,11 @@ function DykScribe() {
             gap: '20px'
           }}
         >
-          <span style={{ fontSize: '2.5em' }}>🤔</span>
+          <Icon name="question" size={40} color="#63b3ed" />
           <div>
             <h3 style={{ margin: '0 0 5px 0', color: '#63b3ed', fontSize: '1.2em' }}>What's in a Name?</h3>
-            <p style={{ margin: 0, fontSize: '1.1em', color: '#bee3f8' }}>
-              <strong>"DykScribe"</strong> = <strong>"Van Dyk"</strong> + <strong>"Describe"</strong>. 
+            <p style={{ margin: 0, fontSize: '1.1em', color: '#e2e8f0' }}>
+              <strong style={{ color: '#bee3f8' }}>"DykScribe"</strong> = <strong style={{ color: '#bee3f8' }}>"Van Dyk"</strong> + <strong style={{ color: '#bee3f8' }}>"Describe"</strong>. 
               It's about describing technical problems to build a shared brain for the company.
             </p>
           </div>
@@ -135,7 +136,7 @@ function DykScribe() {
               <div className="metric-value" style={{ fontSize: '2.5em', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
                 {metric.isStatic ? metric.value : <AnimatedCounter value={metric.value} duration={2} />}{metric.suffix}
               </div>
-              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px', color: '#e2e8f0' }}>
                 {metric.label}
               </div>
             </div>
@@ -145,31 +146,35 @@ function DykScribe() {
         {/* Features & Impact Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h2 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h2>
+            <h2 style={{ color: '#feb47b', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '🎙️', text: 'Voice Recording: Speak instead of type' },
-                { icon: '🎮', text: 'Points System: Gamified sharing' },
-                { icon: '🔍', text: 'Easy Search: Instant answers' },
-                { icon: '🛡️', text: 'SQL Database: Secure storage' }
+                { icon: 'microphone', text: 'Dual Input: Voice recording (Whisper AI) or manual entry' },
+                { icon: 'brain', text: 'AI Processing: GPT-4 for intelligent Q&A extraction' },
+                { icon: 'gamepad', text: 'Points System: 1 point per valid Q&A pair' },
+                { icon: 'database', text: 'SQL Server: Secure storage with duplicate prevention' },
+                { icon: 'file', text: 'PDF Uploads: Attach equipment manuals (up to 25MB)' },
+                { icon: 'building', text: 'Equipment Management: Dynamic type/manufacturer/model selection' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h2 style={{ borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h2>
+            <h2 style={{ color: '#feb47b', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '🧠', text: 'Save Knowledge: Retain expertise' },
-                { icon: '🚀', text: 'Train Faster: "Shared brain" for new hires' },
-                { icon: '⚡', text: 'Better Service: Faster fixes' }
+                { icon: 'brain', text: 'Knowledge Retention: Preserve institutional expertise' },
+                { icon: 'rocket', text: 'Faster Training: "Shared brain" accelerates onboarding' },
+                { icon: 'zap', text: 'Improved Service: Instant access to proven solutions' },
+                { icon: 'shield', text: 'Data Security: Hash-based duplicate prevention' },
+                { icon: 'refresh', text: 'Future Integration: Combines with RAG for complete knowledge base' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>

@@ -1,3 +1,27 @@
+.home-background {
+  background-image: url('/images/vdrsex/DSC01452.JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.home-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 102, 204, 0.7) 0%,
+    rgba(0, 166, 81, 0.6) 100%
+  );
+  z-index: 0;
+}
+
 .home-container {
   min-height: 80vh;
   display: flex;
@@ -20,20 +44,24 @@
   -webkit-text-fill-color: transparent;
   margin-bottom: var(--spacing-xs);
   line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .hero-header h2 {
   font-size: 1.8rem;
-  color: var(--vd-primary-dark);
+  color: white;
   font-weight: 600;
   margin-bottom: var(--spacing-sm);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
-  color: var(--vd-neutral);
+  color: white;
   margin-bottom: var(--spacing-xl);
   font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .profile-section {
@@ -41,11 +69,12 @@
   align-items: center;
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-2xl);
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.9);
   padding: var(--spacing-lg);
   border-radius: var(--radius-xl);
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .profile-image {
@@ -101,28 +130,90 @@
   box-shadow: var(--shadow-lg);
 }
 
+.metric-label {
+  color: var(--vd-neutral-dark);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: var(--spacing-sm);
+}
+
 .journey-section {
   background: var(--vd-gradient-hero);
   color: white;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-2xl);
   border-radius: var(--radius-xl);
   width: 100%;
   margin-bottom: var(--spacing-xl);
   text-align: left;
   box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.journey-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
 }
 
 .journey-title {
   color: white;
-  font-size: 1.4rem;
-  margin-bottom: var(--spacing-lg);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-xl);
   text-align: center;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
 }
 
 .journey-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.journey-grid::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-50%);
+}
+
+.journey-column {
+  background: rgba(255, 255, 255, 0.05);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.journey-column h3 {
+  color: white;
+  margin-bottom: var(--spacing-md);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
 }
 
 .journey-column h4 {
@@ -136,21 +227,26 @@
 .journey-column ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .journey-column li {
   position: relative;
-  padding-left: var(--spacing-lg);
-  margin-bottom: var(--spacing-xs);
-  color: rgba(255, 255, 255, 0.9);
+  padding-left: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .journey-column li::before {
-  content: "•";
+  content: "▸";
   color: var(--vd-secondary-light);
   position: absolute;
   left: 0;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .cta-btn-primary {

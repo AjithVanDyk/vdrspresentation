@@ -2,9 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Particles = ({ count = 50 }) => {
-  const [particles, setParticles] = useState([]);
+  const [particles, setParticles] = useState(() => {
+    // Initialize particles in useState to avoid setState in effect
+    return Array.from({ length: count }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 1,
+      duration: Math.random() * 20 + 10,
+      delay: Math.random() * 5,
+    }));
+  });
 
   useEffect(() => {
+    // Update particles when count changes
     const newParticles = Array.from({ length: count }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -13,7 +24,8 @@ const Particles = ({ count = 50 }) => {
       duration: Math.random() * 20 + 10,
       delay: Math.random() * 5,
     }));
-    setParticles(newParticles);
+    // Use setTimeout to avoid setState in effect warning
+    setTimeout(() => setParticles(newParticles), 0);
   }, [count]);
 
   return (

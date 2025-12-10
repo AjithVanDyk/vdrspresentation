@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
+import { Icon } from '../components/Icons';
 
 function CDMS() {
   const containerVariants = {
@@ -60,7 +61,7 @@ function CDMS() {
                 transition: 'transform 0.2s, box-shadow 0.2s'
               }}
             >
-              <span>🚀</span> View Live System
+              <Icon name="rocket" size={20} color="white" /> View Live System
             </a>
             <div style={{ fontSize: '0.9em', color: '#718096', marginTop: '10px' }}>
               (Walkthrough available after clicking)
@@ -74,21 +75,21 @@ function CDMS() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>📧</span>
+              <Icon name="mail" size={32} color="#feb47b" />
               <h2 style={{ margin: 0, color: '#feb47b' }}>The Problem</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              We had an old "Contracts App" that wasn't working well. Suppliers were emailing important files, which was messy and insecure.
+              The legacy "Contracts App" was unreliable and difficult to maintain. Suppliers were forced to email critical project files (schematics, manuals, safety documents), creating security risks, organizational chaos, and version control issues. There was no centralized, secure system for document exchange with external partners.
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <span style={{ fontSize: '2em' }}>🛡️</span>
+              <Icon name="shield" size={32} color="#68d391" />
               <h2 style={{ margin: 0, color: '#68d391' }}>My Solution</h2>
             </div>
             <p style={{ color: '#e2e8f0', lineHeight: '1.6' }}>
-              I built a secure website where suppliers can upload files directly. Even though I was new to React and Azure, I learned quickly and delivered a robust solution.
+              Built a production-ready Container Document Management System (CDMS) using React frontend and Node.js/Express backend. Features include secure OTP authentication with SHA-256 hashing, role-based access control (supplier vs. employee views), automatic file categorization into 5 distinct categories, Azure Blob Storage integration, and seamless synchronization with internal Azure Files structure. The system provides a professional, secure portal for supplier document uploads.
             </p>
           </motion.div>
         </div>
@@ -124,14 +125,14 @@ function CDMS() {
             <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Technical Architecture</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '⚛️', text: 'Frontend: React & Material-UI' },
-                { icon: '🟢', text: 'Backend: Node.js & Express' },
-                { icon: '🗄️', text: 'DB: Azure SQL Server' },
-                { icon: '☁️', text: 'Storage: Azure Blob Storage' },
-                { icon: '🔐', text: 'Auth: OTP & JWT (Office 365)' }
+                { icon: 'atom', text: 'Frontend: React & Material-UI' },
+                { icon: 'server', text: 'Backend: Node.js & Express' },
+                { icon: 'database', text: 'DB: Azure SQL Server' },
+                { icon: 'cloud', text: 'Storage: Azure Blob Storage' },
+                { icon: 'lock', text: 'Auth: OTP & JWT (Office 365)' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>
@@ -141,13 +142,13 @@ function CDMS() {
             <h2 style={{ color: '#a0aec0', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Enterprise Features</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
-                { icon: '👥', text: 'RBAC: Supplier vs. Employee Views' },
-                { icon: '📄', text: 'Docs: Auto-categorized Uploads' },
-                { icon: '🔍', text: 'Search: VDRS Reference Tracking' },
-                { icon: '🚀', text: 'CI/CD: GitHub Actions Pipelines' }
+                { icon: 'users', text: 'RBAC: Supplier vs. Employee Views' },
+                { icon: 'file', text: 'Docs: Auto-categorized Uploads' },
+                { icon: 'search', text: 'Search: VDRS Reference Tracking' },
+                { icon: 'rocket', text: 'CI/CD: GitHub Actions Pipelines' }
               ].map((item, i) => (
                 <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
-                  <span style={{ fontSize: '1.2em' }}>{item.icon}</span> {item.text}
+                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
             </ul>
