@@ -1,125 +1,83 @@
 # Van Dyk Technical Portfolio Presentation
 
-A comprehensive, interactive web-based presentation showcasing the technical portfolio and business impact of systems developed by Ajith Srikanth during their internship at Van Dyk Recycling Solutions.
+A comprehensive, interactive React-based presentation showcasing the technical portfolio and business impact of systems developed by Ajith Srikanth during his internship at Van Dyk Recycling Solutions.
 
 ## 🎯 Overview
 
-This presentation highlights **13 production systems** that have generated **$860K+ in annual cost savings** through AI-powered automation, intelligent data processing, and streamlined workflows.
-
-## 📁 Project Structure
-
-```
-vdrspresentation/
-├── index.html                 # Main presentation file
-├── assets/
-│   ├── css/
-│   │   └── styles.css        # Enhanced styling and animations
-│   ├── js/
-│   │   └── presentation.js   # Interactive features and navigation
-│   └── images/
-│       └── projects/         # Project screenshots organized by system
-├── docs/
-│   ├── projects/            # Individual project documentation
-│   ├── overview/            # Portfolio overview documents
-│   └── technical/          # Technical flowcharts and diagrams
-└── archive/                 # Original files preserved
-```
+This portfolio serves as a walkthrough of **13 production systems** developed to automate workflows, manage document lifecycles, and enhance operational efficiency. The systems have collectively generated **$860K+ in annual cost savings**.
 
 ## 🚀 Features
 
-### Interactive Presentation
-- **13 Comprehensive Slides** covering all major systems
-- **Keyboard Navigation** (Arrow keys, Home, End)
-- **Touch Gestures** for mobile devices (swipe left/right)
-- **Progress Bar** showing presentation progress
-- **Sidebar Navigation** with quick jump to any slide
-- **Image Galleries** with modal popups for detailed viewing
+### Interactive React Application
+- **Modern Tech Stack**: Built with React 19, Vite, and Framer Motion.
+- **Dynamic Theming**: Intelligent **Light/Dark Theme** switching based on project completion status:
+    - ⚪ **Light Theme**: Incomplete/Ongoing projects.
+    - ⚫ **Dark Theme**: Completed/Deployed projects.
+- **Scroll Animations**: Custom hook-based reveal animations for all content.
+- **Interactive Flowcharts**: Integrated Mermaid.js diagrams for visualizing complex workflows directly in the browser.
 
-### Enhanced User Experience
-- Smooth slide transitions and animations
-- Responsive design for all screen sizes
-- Print-friendly stylesheet
-- Code syntax highlighting
-- Interactive metric cards with hover effects
+### 🎨 Portfolio Chronology
 
-## 🎨 Systems Showcased
+The presentation follows a specific chronological journey:
 
-1. **RAG System** - AI-powered knowledge engine (99.6% faster search)
-2. **DykScribe** - Field knowledge capture system ($100K savings)
-3. **Data Extractor Suite** - Dual-LLM BOM extraction (97% accuracy)
-4. **GDrive Toolkit** - 50-thread parallel processing (99% time reduction)
-5. **CDMS** - Cloud-native document management ($100K savings)
-6. **VDRS360** - Equipment lifecycle management ($150K savings)
-7. **Nameplates Extractor** - GPT-4 Vision pipeline ($62K savings)
-8. **BlobCheck** - Cloud-database synchronization
-9. **Van Dyk Tools** - Unified operations platform
-10. **Cross-System Integration** - End-to-end workflows
+#### Incomplete / Ongoing (Light Theme)
+1. **RAG System**: AI-powered knowledge engine enabling natural language queries over 10,000+ technical documents.
+2. **DykScribe**: Field knowledge capture system to preserve engineer expertise.
+3. **VDRS360**: Advanced equipment lifecycle management dashboard.
+4. **Mobile App**: React Native/PWA solution for field service reporting.
 
-## 📊 Key Metrics
-
-- **13 Production Systems** deployed
-- **$860K+ Annual Cost Savings**
-- **15,000+ Lines of Code**
-- **50+ Active Users**
-- **99.8% System Uptime**
+#### Completed / Production (Dark Theme)
+5. **Website**: The updated Van Dyk corporate web presence.
+6. **Van Dyk Tools**: Unified operations platform integrating 20+ specialized tools (Data Extractor, File Organizer, etc.).
+7. **CDMS**: Cloud-native Container Document Management System.
+8. **VDRS Exchange**: Secure enterprise file exchange and integration layer.
+9. **CostIQ**: ML-powered travel cost estimation pipeline.
+10. **Customers**: Portfolio of major clients served (WM, Tomra, etc.).
+11. **Life at VDRS**: Reflections on company culture and personal growth.
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **AI/ML**: OpenAI GPT-4, Whisper, ChromaDB, LangChain
-- **Cloud**: Azure Blob Storage, SQL Server, Azure Static Web Apps
-- **Backend**: Python, Node.js, React Native
-- **Data Processing**: Pandas, NumPy, Multiple OCR Engines
+- **Frontend**: React.js, Vite, Framer Motion, Mermaid.js
+- **Styling**: CSS Modules, CSS Variables (Theming), Responsive Design
+- **Integration**: React Router v6
 
 ## 📖 Usage
 
-### Viewing the Presentation
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-1. **Local Viewing**: Simply open `index.html` in a modern web browser
-2. **GitHub Pages**: The presentation can be hosted on GitHub Pages
-3. **Local Server** (recommended for development):
-   ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Node.js
-   npx http-server
-   ```
+### Installation
 
-### Navigation
+```bash
+# Clone the repository
+git clone https://github.com/AjithVanDyk/vdrspresentation.git
 
-- **Keyboard**: 
-  - `←` / `→` : Previous/Next slide
-  - `Home` : First slide
-  - `End` : Last slide
-  - `Esc` : Close image modal
-- **Mouse**: Click navigation buttons at bottom
-- **Touch**: Swipe left/right on mobile devices
-- **Sidebar**: Click menu button (☰) to open slide navigation
+# Navigate to the app directory
+cd vdrspresentation/presentation-app
 
-## 📝 Documentation
+# Install dependencies
+npm install
+```
 
-Detailed documentation for each project is available in the `docs/` directory:
+### Development
 
-- **Individual Projects**: `docs/projects/` - Complete technical documentation for each system
-- **Portfolio Overview**: `docs/overview/` - High-level portfolio summary
-- **Technical Details**: `docs/technical/` - Flowcharts and architecture diagrams
+```bash
+# Start the development server
+npm run dev
+```
 
-## 🔧 Development
+The application will be available at `http://localhost:5173`.
 
-### File Structure
-- **CSS**: All styles in `assets/css/styles.css`
-- **JavaScript**: All interactions in `assets/js/presentation.js`
-- **Images**: Organized by project in `assets/images/projects/`
+### Build for Production
 
-### Customization
-- Modify slide content in `index.html`
-- Update styles in `assets/css/styles.css`
-- Add interactions in `assets/js/presentation.js`
+```bash
+# Build the project
+npm run build
 
-## 📄 License
-
-This presentation is part of the Van Dyk Recycling Solutions portfolio documentation.
+# Preview the build
+npm run preview
+```
 
 ## 👤 Author
 
@@ -130,9 +88,7 @@ Portfolio: Technical Systems Development for Van Dyk Recycling Solutions
 ## 🔗 Links
 
 - **GitHub Repository**: [https://github.com/AjithVanDyk/vdrspresentation.git](https://github.com/AjithVanDyk/vdrspresentation.git)
-- **Portfolio Overview**: See `docs/overview/Complete_Project_Portfolio_Overview.md`
 
 ---
 
-*Last Updated: November 2025*
-
+*Last Updated: December 2025*
