@@ -87,11 +87,24 @@ const MermaidDiagram = ({ chart, id, title }) => {
           .then(({ svg }) => {
             if (containerRef.current) {
               containerRef.current.innerHTML = svg;
-              // Ensure the SVG fits nicely
+              // Ensure the SVG fits nicely and is responsive to browser
               const svgElement = containerRef.current.querySelector('svg');
               if (svgElement) {
                 svgElement.style.maxWidth = '100%';
+                svgElement.style.width = '100%';
                 svgElement.style.height = 'auto';
+                svgElement.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+                // Make it responsive by adjusting viewBox if needed
+                const viewBox = svgElement.getAttribute('viewBox');
+                if (!viewBox) {
+                  const width = svgElement.getAttribute('width');
+                  const height = svgElement.getAttribute('height');
+                  if (width && height) {
+                    svgElement.setAttribute('viewBox', `0 0 ${width} ${height}`);
+                    svgElement.removeAttribute('width');
+                    svgElement.removeAttribute('height');
+                  }
+                }
               }
             }
           })
@@ -117,7 +130,10 @@ const MermaidDiagram = ({ chart, id, title }) => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      width: '100%',
+      maxWidth: '100%',
+      overflow: 'auto'
     }}>
       {error ? (
         <div style={{ color: '#e53e3e', textAlign: 'center' }}>
@@ -127,7 +143,14 @@ const MermaidDiagram = ({ chart, id, title }) => {
         <div 
           ref={containerRef} 
           className="mermaid-diagram"
-          style={{ width: '100%' }}
+          style={{ 
+            width: '100%', 
+            maxWidth: '100%',
+            overflow: 'auto',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}
         />
       )}
       {title && <p style={{ marginTop: '10px', color: '#718096', fontSize: '0.9em' }}>{title}</p>}
@@ -136,6 +159,8 @@ const MermaidDiagram = ({ chart, id, title }) => {
 };
 
 function VanDykTools() {
+  const [expandedCard, setExpandedCard] = useState(null);
+
   const sections = useMemo(() => {
     const lines = flowchartsMd.split('\n');
     const parsedSections = [];
@@ -166,6 +191,10 @@ function VanDykTools() {
     if (currentSection) parsedSections.push(currentSection);
     return parsedSections.filter(s => s.title !== 'Summary');
   }, []);
+
+  const handleCardClick = (index) => {
+    setExpandedCard(expandedCard === index ? null : index);
+  };
 
   return (
     <PresentationSlide>
@@ -316,14 +345,21 @@ function VanDykTools() {
                 padding: '25px', 
                 boxShadow: '0 5px 15px rgba(0,0,0,0.05)',
                 border: '1px solid rgba(0,0,0,0.05)',
-                minHeight: '200px'
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                borderLeft: expandedCard === index ? '4px solid var(--vdrs-orange)' : '1px solid rgba(0,0,0,0.05)'
+              }}
+              onClick={() => handleCardClick(index)}
+              whileHover={{ 
+                boxShadow: '0 8px 20px rgba(0,0,0,0.1)',
+                transform: 'translateY(-2px)'
               }}
             >
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                style={{ marginBottom: '15px' }}
+                style={{ marginBottom: '15px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
               >
                 <h3 style={{ 
                   color: 'var(--vdrs-blue)', 
@@ -333,7 +369,8 @@ function VanDykTools() {
                   paddingBottom: '10px', 
                   display: 'inline-block',
                   position: 'relative',
-                  paddingLeft: '35px'
+                  paddingLeft: '35px',
+                  margin: 0
                 }}>
                   <span style={{ 
                     position: 'absolute',
@@ -344,13 +381,42 @@ function VanDykTools() {
                   }}>📊</span>
                   {section.title}
                 </h3>
+                <motion.span
+                  animate={{ rotate: expandedCard === index ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{ 
+                    fontSize: '1.5em', 
+                    color: 'var(--vdrs-orange)',
+                    marginLeft: '15px'
+                  }}
+                >
+                  ▼
+                </motion.span>
               </motion.div>
               
-              {section.mermaid && (
-                <div style={{ marginTop: '20px' }}>
-                  <MermaidDiagram chart={section.mermaid} id={`chart-${index}`} title={section.title} />
-                </div>
-              )}
+              <AnimatePresence>
+                {expandedCard === index && section.mermaid && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ 
+                      marginTop: '20px',
+                      overflow: 'hidden',
+                      width: '100%'
+                    }}
+                  >
+                    <div style={{ 
+                      width: '100%',
+                      maxWidth: '100%',
+                      overflow: 'auto'
+                    }}>
+                      <MermaidDiagram chart={section.mermaid} id={`chart-${index}`} title={section.title} />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               
               <div style={{ marginTop: '20px', background: 'rgba(255,255,255,0.8)', padding: '15px', borderRadius: '8px' }}>
                   {section.content.map((line, i) => (

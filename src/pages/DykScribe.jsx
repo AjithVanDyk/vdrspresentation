@@ -8,13 +8,20 @@ function DykScribe() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 }
+      transition: { 
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
   };
 
   return (
@@ -23,7 +30,13 @@ function DykScribe() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+        style={{ 
+          height: '100%', 
+          display: 'flex', 
+          flexDirection: 'column',
+          opacity: 1,
+          minHeight: '100vh'
+        }}
       >
         {/* Hero Section */}
         <motion.div variants={itemVariants} style={{ textAlign: 'center', marginBottom: '30px' }}>
@@ -36,7 +49,7 @@ function DykScribe() {
           }}>
             DykScribe
           </h1>
-          <h2 style={{ fontSize: '1.5em', fontWeight: '300', margin: '0 0 25px 0' }}>
+          <h2 style={{ fontSize: '1.5em', fontWeight: '300', margin: '0 0 25px 0', color: '#e2e8f0' }}>
             Knowledge Capture & Engineer Intelligence System
           </h2>
           
@@ -63,7 +76,7 @@ function DykScribe() {
             >
               <Icon name="rocket" size={20} color="white" /> View Live Demo
             </a>
-            <div style={{ fontSize: '0.9em', marginTop: '10px' }}>
+            <div style={{ fontSize: '0.9em', marginTop: '10px', color: '#cbd5e0' }}>
               (Walkthrough available after clicking)
             </div>
           </div>
@@ -78,7 +91,7 @@ function DykScribe() {
               <Icon name="puzzle" size={32} color="#feb47b" />
               <h2 style={{ margin: 0, color: '#feb47b' }}>The Problem</h2>
             </div>
-            <p style={{ lineHeight: '1.6', color: '#e2e8f0' }}>
+            <p style={{ lineHeight: '1.6', color: '#f7fafc', fontSize: '1em' }}>
               When experienced engineers retire or move on, their invaluable troubleshooting knowledge and field expertise leaves with them. There was no systematic way to capture, store, and share this institutional knowledge with new employees, leading to repeated mistakes and slower problem resolution.
             </p>
           </motion.div>
@@ -88,7 +101,7 @@ function DykScribe() {
               <Icon name="lightbulb" size={32} color="#68d391" />
               <h2 style={{ margin: '0', color: '#68d391' }}>My Solution</h2>
             </div>
-            <p style={{ lineHeight: '1.6', color: '#e2e8f0' }}>
+            <p style={{ lineHeight: '1.6', color: '#f7fafc', fontSize: '1em' }}>
               Built a sophisticated Streamlit web application that enables engineers to capture knowledge through dual input methods: voice recording with AI transcription (OpenAI Whisper) or manual Q&A entry. The system uses GPT-4 for intelligent Q&A extraction, integrates with SQL Server for secure storage, and includes equipment management, PDF manual uploads, and a gamified points system to encourage knowledge sharing.
             </p>
           </motion.div>
@@ -111,8 +124,8 @@ function DykScribe() {
           <Icon name="question" size={40} color="#63b3ed" />
           <div>
             <h3 style={{ margin: '0 0 5px 0', color: '#63b3ed', fontSize: '1.2em' }}>What's in a Name?</h3>
-            <p style={{ margin: 0, fontSize: '1.1em', color: '#e2e8f0' }}>
-              <strong style={{ color: '#bee3f8' }}>"DykScribe"</strong> = <strong style={{ color: '#bee3f8' }}>"Van Dyk"</strong> + <strong style={{ color: '#bee3f8' }}>"Describe"</strong>. 
+            <p style={{ margin: 0, fontSize: '1.1em', color: '#f7fafc' }}>
+              <strong style={{ color: '#90cdf4' }}>"DykScribe"</strong> = <strong style={{ color: '#90cdf4' }}>"Van Dyk"</strong> + <strong style={{ color: '#90cdf4' }}>"Describe"</strong>. 
               It's about describing technical problems to build a shared brain for the company.
             </p>
           </div>
@@ -136,7 +149,7 @@ function DykScribe() {
               <div className="metric-value" style={{ fontSize: '2.5em', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
                 {metric.isStatic ? metric.value : <AnimatedCounter value={metric.value} duration={2} />}{metric.suffix}
               </div>
-              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px', color: '#e2e8f0' }}>
+              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px', color: '#f7fafc', fontWeight: '500' }}>
                 {metric.label}
               </div>
             </div>
@@ -156,7 +169,7 @@ function DykScribe() {
                 { icon: 'file', text: 'PDF Uploads: Attach equipment manuals (up to 25MB)' },
                 { icon: 'building', text: 'Equipment Management: Dynamic type/manufacturer/model selection' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#f7fafc', fontSize: '1em' }}>
                   <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}
@@ -173,7 +186,7 @@ function DykScribe() {
                 { icon: 'shield', text: 'Data Security: Hash-based duplicate prevention' },
                 { icon: 'refresh', text: 'Future Integration: Combines with RAG for complete knowledge base' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#e2e8f0' }}>
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#f7fafc', fontSize: '1em' }}>
                   <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
                 </li>
               ))}

@@ -64,28 +64,28 @@ function AppContent() {
   return (
     <>
       <Navbar />
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+          <Route path="/" element={<PageTransition key="home"><Home /></PageTransition>} />
           
           {/* Incomplete / Light Theme Group */}
-          <Route path="/rag-system" element={<PageTransition><RAGSystem /></PageTransition>} />
-          <Route path="/dykscribe" element={<PageTransition><DykScribe /></PageTransition>} />
-          <Route path="/vdrs360" element={<PageTransition><VDRS360 /></PageTransition>} />
-          <Route path="/mobile-app" element={<PageTransition><MobileApp /></PageTransition>} />
+          <Route path="/rag-system" element={<PageTransition key="rag"><RAGSystem /></PageTransition>} />
+          <Route path="/dykscribe" element={<PageTransition key="dykscribe"><DykScribe /></PageTransition>} />
+          <Route path="/vdrs360" element={<PageTransition key="vdrs360"><VDRS360 /></PageTransition>} />
+          <Route path="/mobile-app" element={<PageTransition key="mobile"><MobileApp /></PageTransition>} />
           
           {/* Completed / Dark Theme Group */}
-          <Route path="/website" element={<PageTransition><VDRSWebsite /></PageTransition>} />
-          <Route path="/tools" element={<PageTransition><VanDykTools /></PageTransition>} />
-          <Route path="/cdms" element={<PageTransition><CDMS /></PageTransition>} />
-          <Route path="/vdrs-exchange" element={<PageTransition><VDRSExchange /></PageTransition>} />
-          <Route path="/cost-iq" element={<PageTransition><CostIQ /></PageTransition>} />
-          <Route path="/customers" element={<PageTransition><Customers /></PageTransition>} />
-          <Route path="/summary" element={<PageTransition><Summary /></PageTransition>} />
+          <Route path="/website" element={<PageTransition key="website"><VDRSWebsite /></PageTransition>} />
+          <Route path="/tools" element={<PageTransition key="tools"><VanDykTools /></PageTransition>} />
+          <Route path="/cdms" element={<PageTransition key="cdms"><CDMS /></PageTransition>} />
+          <Route path="/vdrs-exchange" element={<PageTransition key="exchange"><VDRSExchange /></PageTransition>} />
+          <Route path="/cost-iq" element={<PageTransition key="costiq"><CostIQ /></PageTransition>} />
+          <Route path="/customers" element={<PageTransition key="customers"><Customers /></PageTransition>} />
+          <Route path="/summary" element={<PageTransition key="summary"><Summary /></PageTransition>} />
           
           {/* Hidden/Detail Routes */}
-          <Route path="/data-extractor" element={<PageTransition><DataExtractor /></PageTransition>} />
-          <Route path="/vandyk-tools-detail" element={<PageTransition><VanDykToolsDetail /></PageTransition>} />
+          <Route path="/data-extractor" element={<PageTransition key="extractor"><DataExtractor /></PageTransition>} />
+          <Route path="/vandyk-tools-detail" element={<PageTransition key="tools-detail"><VanDykToolsDetail /></PageTransition>} />
         </Routes>
       </AnimatePresence>
     </>
@@ -93,13 +93,18 @@ function AppContent() {
 }
 
 function PageTransition({ children }) {
+  useEffect(() => {
+    // Scroll to top on page change
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      style={{ width: '100%' }}
+      transition={{ duration: 0.4, ease: "easeInOut" }}
+      style={{ width: '100%', minHeight: '100vh', position: 'relative' }}
     >
       {children}
     </motion.div>

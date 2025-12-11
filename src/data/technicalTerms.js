@@ -132,3 +132,4 @@ export const findTechnicalTerms = (text) => {
   return foundTerms;
 };
 
+

@@ -7,17 +7,14 @@ import ClickableImage from '../components/ClickableImage';
 function Summary() {
 
   const eventImages = [
-    "/images/exp/Image (4).jpg",
-    "/images/exp/unnamed.jpg",
-    "/images/exp/unnamed (1).jpg",
-    "/images/exp/image.png",
-    "/images/exp/image (3).jpg",
-    "/images/exp/Screenshot 2025-10-07 163516.png",
-    "/images/exp/IMG_9627.JPG"
+    "/images/exp/CAB3B256-F15D-4059-AF1F-C3EEFF4E5A16.jpg",
+    "/images/exp/IMG_9627.JPG",
+    "/images/exp/Screenshot 2025-11-11 093620.png",
+    "/images/exp/Screenshot 2025-11-11 093641.png"
   ];
 
   return (
-    <PresentationSlide>
+    <PresentationSlide backgroundImage="/images/image (1).png">
       <div className="slide-header">
         <h1>Life at Van Dyk</h1>
         <h2>Impact, Culture, and Family</h2>
@@ -95,16 +92,16 @@ function Summary() {
           <h3 style={{ margin: '0 0 15px 0', color: 'var(--vdrs-blue)' }}>Special Thanks</h3>
           <ul style={{ fontSize: '0.95em', color: '#333', listStyle: 'none', padding: 0 }}>
             <li style={{ marginBottom: '10px', color: '#333' }}>
-              <strong>Ginny, Victoria, & Paul:</strong> Thank you for being so open, welcoming, and easy to work with. You made me feel at home.
+              <strong>Ginny, Victoria, & Paul:</strong> Thank you for being so open, welcoming, and easy to work with. You made me feel at home from the very beginning.
             </li>
             <li style={{ marginBottom: '10px', color: '#333' }}>
-              <strong>Faizan:</strong> Thank you for the opportunity to explore, for trusting me to "fix it but not break it," and for believing that my experiments would work out.
+              <strong>Faizan:</strong> Thank you for giving me the opportunity to explore, for trusting me to "fix it but not break it," and for believing in my experiments and innovative approaches.
             </li>
             <li style={{ marginBottom: '10px', color: '#333' }}>
-              <strong>Gary & Sergio:</strong> Appreciate the help with the space and tools to work on my car!
+              <strong>Gary & Sergio:</strong> Thank you for providing the space and tools to work on my car. Your generosity was greatly appreciated!
             </li>
             <li style={{ marginBottom: '10px', color: '#333' }}>
-              <strong>Chef Steve:</strong> For the amazing food (and the free extras!).
+              <strong>Chef Steve:</strong> Thank you for the amazing food and the thoughtful extras. Your meals made every day better!
             </li>
           </ul>
         </div>
@@ -113,13 +110,13 @@ function Summary() {
           <h3 style={{ margin: '0 0 15px 0', color: 'var(--vdrs-blue)' }}>The Team</h3>
           <ul style={{ fontSize: '0.95em', color: '#333', listStyle: 'none', padding: 0 }}>
             <li style={{ marginBottom: '10px', color: '#333' }}>
-              <strong>Daksh:</strong> Thanks for helping me out so many times.
+              <strong>Daksh:</strong> Thank you for helping me countless times. Your support was invaluable.
             </li>
             <li style={{ marginBottom: '10px', color: '#333' }}>
-              <strong>Adeeb:</strong> For hanging out and being a great friend.
+              <strong>Adeeb:</strong> Thank you for being such a great friend and for all the memorable moments we shared together.
             </li>
             <li style={{ marginBottom: '10px', color: '#333' }}>
-              <strong>Intern Squad:</strong> Zach, Claudia, Ainsley, and Arjun - thanks for making the first few months memorable.
+              <strong>Intern Squad:</strong> Zach, Claudia, Ainsley, and Arjun—thank you for making the first few months truly memorable and enjoyable.
             </li>
             <li style={{ marginTop: '15px', fontStyle: 'italic', borderTop: '1px solid #eee', paddingTop: '10px', color: '#555' }}>
               "Even though I didn't have any family here, Van Dyk became my family."
@@ -202,20 +199,6 @@ function Summary() {
           </a>
         </div>
       </div>
-      
-      {/* Decorative Baler SVG */}
-      <img 
-        src="/images/exp/image (1).png" 
-        alt="Baler Graphic" 
-        style={{ 
-          position: 'absolute', 
-          bottom: '20px', 
-          right: '20px', 
-          width: '80px', 
-          opacity: 0.1,
-          pointerEvents: 'none'
-        }} 
-      />
     </PresentationSlide>
   );
 }

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
+import ClickableImage from '../components/ClickableImage';
 import { Icon } from '../components/Icons';
 
 function VDRSExchange() {
@@ -91,6 +92,33 @@ function VDRSExchange() {
           </motion.div>
         </div>
 
+        {/* Image Grid */}
+        <motion.div variants={itemVariants} className="image-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px', margin: '15px 0' }}>
+          {[
+            { src: "/images/vdrsex/Screenshot 2025-10-29 175510.png", alt: "VDRS Exchange Dashboard" },
+            { src: "/images/vdrsex/Screenshot 2025-10-30 104013.png", alt: "File Management Interface" },
+            { src: "/images/vdrsex/Screenshot 2025-10-30 153958.png", alt: "Enterprise Portal View" },
+            { src: "/images/vdrsex/Screenshot 2025-12-02 160008.png", alt: "File Upload Interface" },
+            { src: "/images/vdrsex/Screenshot 2025-12-02 160049.png", alt: "Secure File Exchange" }
+          ].map((img, index) => (
+            <ClickableImage
+              key={index}
+              src={img.src}
+              alt={img.alt}
+              images={[
+                { src: "/images/vdrsex/Screenshot 2025-10-29 175510.png", alt: "VDRS Exchange Dashboard" },
+                { src: "/images/vdrsex/Screenshot 2025-10-30 104013.png", alt: "File Management Interface" },
+                { src: "/images/vdrsex/Screenshot 2025-10-30 153958.png", alt: "Enterprise Portal View" },
+                { src: "/images/vdrsex/Screenshot 2025-12-02 160008.png", alt: "File Upload Interface" },
+                { src: "/images/vdrsex/Screenshot 2025-12-02 160049.png", alt: "Secure File Exchange" }
+              ]}
+              index={index}
+              className="grid-image"
+              style={{ height: '150px', width: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }}
+            />
+          ))}
+        </motion.div>
+
         {/* Metrics Grid */}
         <motion.div variants={itemVariants} className="metrics-grid" style={{ margin: '0 0 25px 0', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
           {[
@@ -123,7 +151,7 @@ function VDRSExchange() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: 'lock', text: 'Auth: OTP with SHA-256 Hashing' },
-                { icon: 'database', text: 'Backend: Flask & SQL Server' },
+                { icon: 'database', text: 'Backend: Node.js & SQL Server' },
                 { icon: 'cloud', text: 'Storage: Azure Files (FTP Mirror)' },
                 { icon: 'atom', text: 'Frontend: React & Material-UI' }
               ].map((item, i) => (

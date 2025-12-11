@@ -216,25 +216,48 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-/* Page Container - Website Design */
+/* Page Container - Presentation Format */
 .page {
   width: 90%;
-  max-width: 1200px;
-  margin: 40px auto;
+  max-width: 1400px;
+  margin: 30px auto;
   background: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  padding: 40px;
-  min-height: 80vh; /* Ensure it takes up space */
+  border-radius: 16px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.25), 0 10px 30px rgba(0,0,0,0.15);
+  padding: 50px;
+  min-height: 85vh;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
 .page.dark-mode {
   background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 70px rgba(0,0,0,0.4), 0 10px 30px rgba(0,0,0,0.2);
 }
+
+/* When page has background image, adjust styling */
+.page[style*="backgroundImage"] {
+  color: white;
+}
+
+.page[style*="backgroundImage"] h1,
+.page[style*="backgroundImage"] h2,
+.page[style*="backgroundImage"] h3,
+.page[style*="backgroundImage"] h4 {
+  color: white;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.page[style*="backgroundImage"] p,
+.page[style*="backgroundImage"] li {
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
 
 /* Typography */
 h1 {
@@ -280,9 +303,20 @@ strong {
 
 /* Slide Header */
 .slide-header {
-  border-bottom: 3px solid var(--vdrs-orange);
-  padding-bottom: 20px;
-  margin-bottom: 30px;
+  border-bottom: 4px solid var(--vdrs-orange);
+  padding-bottom: 25px;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.slide-header::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--vdrs-blue);
 }
 
 /* Stats Grid */
