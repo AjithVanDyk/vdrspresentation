@@ -72,297 +72,65 @@ mermaid.initialize({
 
 const MermaidDiagram = ({ chart, id, title }) => {
   const containerRef = useRef(null);
-  const renderedRef = useRef(false);
-  const [isLoading, setIsLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [isInteractive, setIsInteractive] = useState(false);
-  const svgRef = useRef(null);
-  const zoomLevelRef = useRef(1);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (containerRef.current && chart && !renderedRef.current) {
-      renderedRef.current = true;
-      
-      // Use setTimeout to avoid setState in effect warning
-      setTimeout(() => {
-        setIsLoading(true);
-        setProgress(0);
-      }, 0);
-      
-      // Simulate progress for gamification
-      const progressInterval = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 90) {
-            clearInterval(progressInterval);
-            return 90;
-          }
-          return prev + 10;
-        });
-      }, 100);
+    if (containerRef.current && chart) {
+      // Clear previous content
+      containerRef.current.innerHTML = '';
+      setError(null);
 
-      const renderTimer = setTimeout(() => {
-        try {
-          const uniqueId = `mermaid-${id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-          
-          mermaid.render(uniqueId, chart)
-            .then(({ svg }) => {
-              if (containerRef.current) {
-                setProgress(100);
-                clearInterval(progressInterval);
-                
-                // Add interactive styling to SVG
-                const styledSvg = svg
-                  .replace(/<svg/, '<svg class="mermaid-svg-interactive"')
-                  .replace(/<g class="node"/g, '<g class="node mermaid-node-interactive"')
-                  .replace(/<path class="flowchart-link"/g, '<path class="flowchart-link mermaid-link-animated"')
-                  .replace(/<text class="nodeLabel"/g, '<text class="nodeLabel mermaid-text-interactive"');
-                
-                containerRef.current.innerHTML = styledSvg;
-                
-                // Add click handlers and animations
-                const svgElement = containerRef.current.querySelector('svg');
-                if (svgElement) {
-                  svgRef.current = svgElement;
-                  svgElement.style.cursor = 'grab';
-                  svgElement.style.transition = 'transform 0.3s ease';
-                  
-                  // Make nodes interactive
-                  const nodes = svgElement.querySelectorAll('.node, .nodeLabel');
-                  nodes.forEach((node, index) => {
-                    node.style.cursor = 'pointer';
-                    node.style.transition = 'all 0.3s ease';
-                    node.style.opacity = '0';
-                    node.style.transform = 'scale(0.8)';
-                    
-                    // Animate nodes in sequence
-                    setTimeout(() => {
-                      node.style.opacity = '1';
-                      node.style.transform = 'scale(1)';
-                    }, index * 50);
-                    
-                    // Add hover effects
-                    node.addEventListener('mouseenter', () => {
-                      node.style.transform = 'scale(1.1)';
-                      node.style.filter = 'drop-shadow(0 4px 8px rgba(255, 107, 53, 0.5))';
-                    });
-                    
-                    node.addEventListener('mouseleave', () => {
-                      node.style.transform = 'scale(1)';
-                      node.style.filter = 'none';
-                    });
-                  });
-                  
-                  // Animate paths/edges
-                  const paths = svgElement.querySelectorAll('path.flowchart-link, path.edge');
-                  paths.forEach((path, index) => {
-                    const length = path.getTotalLength();
-                    path.style.strokeDasharray = length;
-                    path.style.strokeDashoffset = length;
-                    path.style.opacity = '0';
-                    path.style.transition = 'opacity 0.5s ease, stroke-dashoffset 1s ease';
-                    
-                    setTimeout(() => {
-                      path.style.opacity = '1';
-                      path.style.strokeDashoffset = '0';
-                    }, 300 + index * 100);
-                  });
-                }
-                
-                setIsLoading(false);
-                setIsInteractive(true);
+      const uniqueId = `mermaid-${id}-${Math.random().toString(36).substr(2, 9)}`;
+      
+      try {
+        mermaid.render(uniqueId, chart)
+          .then(({ svg }) => {
+            if (containerRef.current) {
+              containerRef.current.innerHTML = svg;
+              // Ensure the SVG fits nicely
+              const svgElement = containerRef.current.querySelector('svg');
+              if (svgElement) {
+                svgElement.style.maxWidth = '100%';
+                svgElement.style.height = 'auto';
               }
-            })
-            .catch((error) => {
-              console.error('Mermaid render error:', error);
-              clearInterval(progressInterval);
-              if (containerRef.current) {
-                containerRef.current.innerHTML = `
-                  <div style="padding: 20px; text-align: center; color: #e53e3e;">
-                    <p>Error rendering chart</p>
-                    <p style="font-size: 0.8em; margin-top: 10px;">${error.message}</p>
-                  </div>
-                `;
-              }
-              setIsLoading(false);
-              renderedRef.current = false;
-            });
-        } catch (error) {
-          console.error('Mermaid sync error:', error);
-          clearInterval(progressInterval);
-          setIsLoading(false);
-          renderedRef.current = false;
-        }
-      }, 200);
-
-      return () => {
-        clearTimeout(renderTimer);
-        clearInterval(progressInterval);
-      };
+            }
+          })
+          .catch((err) => {
+            console.error('Mermaid render failed:', err);
+            setError('Failed to render chart');
+          });
+      } catch (e) {
+        console.error('Mermaid syntax error:', e);
+        setError('Invalid chart syntax');
+      }
     }
   }, [chart, id]);
 
-  const handleZoomIn = () => {
-    if (svgRef.current) {
-      zoomLevelRef.current = Math.min(zoomLevelRef.current + 0.2, 2);
-      svgRef.current.style.transform = `scale(${zoomLevelRef.current})`;
-    }
-  };
-
-  const handleZoomOut = () => {
-    if (svgRef.current) {
-      zoomLevelRef.current = Math.max(zoomLevelRef.current - 0.2, 0.5);
-      svgRef.current.style.transform = `scale(${zoomLevelRef.current})`;
-    }
-  };
-
-  const handleResetZoom = () => {
-    if (svgRef.current) {
-      zoomLevelRef.current = 1;
-      svgRef.current.style.transform = 'scale(1)';
-    }
-  };
-
   return (
-    <div style={{ position: 'relative', background: 'rgba(255,255,255,0.95)', padding: '20px', borderRadius: '15px', boxShadow: '0 8px 24px rgba(0,0,0,0.1)', border: '2px solid rgba(255, 107, 53, 0.2)' }}>
-      {isLoading && (
-        <div style={{ 
-          position: 'absolute', 
-          top: 0, 
-          left: 0, 
-          right: 0, 
-          bottom: 0, 
-          background: 'rgba(255,255,255,0.95)', 
-          display: 'flex', 
-          flexDirection: 'column',
-          alignItems: 'center', 
-          justifyContent: 'center',
-          borderRadius: '15px',
-          zIndex: 10
-        }}>
-          <div style={{ 
-            width: '200px', 
-            height: '8px', 
-            background: '#e5e7eb', 
-            borderRadius: '4px',
-            overflow: 'hidden',
-            marginBottom: '15px'
-          }}>
-            <motion.div
-              style={{
-                height: '100%',
-                background: 'linear-gradient(90deg, #FF6B35 0%, #feb47b 100%)',
-                borderRadius: '4px',
-                width: `${progress}%`,
-                transition: 'width 0.3s ease'
-              }}
-            />
-          </div>
-          <p style={{ color: 'var(--vdrs-blue)', fontWeight: '600', fontSize: '1.1em' }}>
-            {progress < 100 ? `Rendering flowchart... ${progress}%` : 'Finalizing...'}
-          </p>
-          <p style={{ color: '#666', fontSize: '0.9em', marginTop: '5px' }}>
-            {title || 'Preparing interactive diagram'}
-          </p>
+    <div style={{ 
+      background: 'rgba(255,255,255,0.95)', 
+      padding: '20px', 
+      borderRadius: '15px', 
+      boxShadow: '0 8px 24px rgba(0,0,0,0.1)', 
+      border: '2px solid rgba(255, 107, 53, 0.2)',
+      minHeight: '200px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column'
+    }}>
+      {error ? (
+        <div style={{ color: '#e53e3e', textAlign: 'center' }}>
+          <p>⚠️ {error}</p>
         </div>
+      ) : (
+        <div 
+          ref={containerRef} 
+          className="mermaid-diagram"
+          style={{ width: '100%' }}
+        />
       )}
-      
-      {isInteractive && (
-        <div style={{
-          position: 'absolute',
-          top: '10px',
-          right: '10px',
-          display: 'flex',
-          gap: '8px',
-          zIndex: 20,
-          background: 'rgba(255,255,255,0.9)',
-          padding: '8px',
-          borderRadius: '8px',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }}>
-          <button
-            onClick={handleZoomIn}
-            style={{
-              padding: '6px 12px',
-              background: 'var(--vdrs-orange)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '14px',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-          >
-            +
-          </button>
-          <button
-            onClick={handleZoomOut}
-            style={{
-              padding: '6px 12px',
-              background: 'var(--vdrs-blue)',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '14px',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-          >
-            −
-          </button>
-          <button
-            onClick={handleResetZoom}
-            style={{
-              padding: '6px 12px',
-              background: '#666',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              fontSize: '12px',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-          >
-            ⟲
-          </button>
-        </div>
-      )}
-      
-      <div 
-        ref={containerRef} 
-        className="mermaid-diagram" 
-        style={{ 
-          overflow: 'auto',
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-          minHeight: '300px',
-          maxHeight: '600px',
-          position: 'relative'
-        }} 
-      />
-      
-      {isInteractive && (
-        <div style={{
-          marginTop: '15px',
-          padding: '10px',
-          background: 'rgba(255, 107, 53, 0.1)',
-          borderRadius: '8px',
-          textAlign: 'center',
-          fontSize: '0.85em',
-          color: '#666'
-        }}>
-          <span style={{ fontWeight: '600', color: 'var(--vdrs-orange)' }}>💡 Tip:</span> Hover over nodes to highlight them • Click and drag to pan • Use zoom controls
-        </div>
-      )}
+      {title && <p style={{ marginTop: '10px', color: '#718096', fontSize: '0.9em' }}>{title}</p>}
     </div>
   );
 };
@@ -540,9 +308,8 @@ function VanDykTools() {
             <motion.div 
               key={`section-${index}-${section.title}`}
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               style={{ 
                 background: 'rgba(255,255,255,0.5)', 
                 borderRadius: '15px', 

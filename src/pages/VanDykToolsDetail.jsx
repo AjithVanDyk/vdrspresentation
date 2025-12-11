@@ -23,42 +23,54 @@ mermaid.initialize({
 
 const MermaidDiagram = ({ chart, id }) => {
   const containerRef = useRef(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (containerRef.current && chart) {
-      containerRef.current.innerHTML = '<div class="flex items-center justify-center p-4 text-cyan-400">Rendering chart...</div>';
+      containerRef.current.innerHTML = '<div class="flex items-center justify-center p-4 text-cyan-400">Rendering...</div>';
+      setError(null);
       
-      // Small delay to ensure DOM is ready
-      const timer = setTimeout(() => {
+      const uniqueId = `mermaid-${id}-${Math.random().toString(36).substr(2, 9)}`;
+      
+      setTimeout(() => {
         try {
-          mermaid.render(`mermaid-${id}`, chart)
+          mermaid.render(uniqueId, chart)
             .then(({ svg }) => {
               if (containerRef.current) {
                 containerRef.current.innerHTML = svg;
+                // Ensure SVG fits
+                const svgElement = containerRef.current.querySelector('svg');
+                if (svgElement) {
+                  svgElement.style.maxWidth = '100%';
+                  svgElement.style.height = 'auto';
+                  // Inherit colors in detail view since it's dark mode
+                  svgElement.classList.add('text-white');
+                }
               }
             })
-            .catch((error) => {
-              console.error('Mermaid render error:', error);
+            .catch((err) => {
+              console.error('Mermaid render error:', err);
+              setError(err.message);
               if (containerRef.current) {
-                containerRef.current.innerHTML = `
-                  <div class="text-red-400 p-4 border border-red-500/30 rounded bg-red-500/10">
-                    <p class="font-bold mb-2">Error rendering chart</p>
-                    <pre class="text-xs overflow-auto">${error.message}</pre>
-                  </div>
-                `;
+                containerRef.current.innerHTML = '';
               }
             });
         } catch (error) {
           console.error('Mermaid sync error:', error);
-          if (containerRef.current) {
-            containerRef.current.innerHTML = '<div class="text-red-400">Error initializing chart</div>';
-          }
+          setError(error.message);
         }
       }, 100);
-
-      return () => clearTimeout(timer);
     }
   }, [chart, id]);
+
+  if (error) {
+    return (
+      <div className="text-red-400 p-4 border border-red-500/30 rounded bg-red-500/10">
+        <p className="font-bold mb-2">Error rendering chart</p>
+        <pre className="text-xs overflow-auto">{error}</pre>
+      </div>
+    );
+  }
 
   return <div ref={containerRef} className="mermaid-diagram overflow-x-auto p-4 bg-black/40 rounded-xl min-h-[200px] flex items-center justify-center" />;
 };
