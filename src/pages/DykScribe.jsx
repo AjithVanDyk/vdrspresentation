@@ -25,7 +25,7 @@ function DykScribe() {
   };
 
   return (
-    <PresentationSlide className="dark-mode">
+    <PresentationSlide>
       <motion.div 
         variants={containerVariants}
         initial="hidden"
@@ -49,7 +49,7 @@ function DykScribe() {
           }}>
             DykScribe
           </h1>
-          <h2 style={{ fontSize: '1.5em', fontWeight: '300', margin: '0 0 25px 0', color: '#e2e8f0' }}>
+          <h2 style={{ fontSize: '1.5em', fontWeight: '300', margin: '0 0 25px 0', color: '#4a5568' }}>
             Knowledge Capture & Engineer Intelligence System
           </h2>
           
@@ -76,7 +76,7 @@ function DykScribe() {
             >
               <Icon name="rocket" size={20} color="white" /> View Live Demo
             </a>
-            <div style={{ fontSize: '0.9em', marginTop: '10px', color: '#cbd5e0' }}>
+            <div style={{ fontSize: '0.9em', marginTop: '10px', color: '#718096' }}>
               (Walkthrough available after clicking)
             </div>
           </div>
@@ -88,20 +88,20 @@ function DykScribe() {
           {/* Problem & Solution Cards */}
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <Icon name="puzzle" size={32} color="#feb47b" />
-              <h2 style={{ margin: 0, color: '#feb47b' }}>The Problem</h2>
+              <Icon name="puzzle" size={32} color="#dd6b20" />
+              <h2 style={{ margin: 0, color: '#dd6b20' }}>The Problem</h2>
             </div>
-            <p style={{ lineHeight: '1.6', color: '#f7fafc', fontSize: '1em' }}>
+            <p style={{ lineHeight: '1.6', color: '#2d3748', fontSize: '1em' }}>
               When experienced engineers retire or move on, their invaluable troubleshooting knowledge and field expertise leaves with them. There was no systematic way to capture, store, and share this institutional knowledge with new employees, leading to repeated mistakes and slower problem resolution.
             </p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="glass-card" style={{ padding: '25px', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
-              <Icon name="lightbulb" size={32} color="#68d391" />
-              <h2 style={{ margin: '0', color: '#68d391' }}>My Solution</h2>
+              <Icon name="lightbulb" size={32} color="#38a169" />
+              <h2 style={{ margin: '0', color: '#38a169' }}>My Solution</h2>
             </div>
-            <p style={{ lineHeight: '1.6', color: '#f7fafc', fontSize: '1em' }}>
+            <p style={{ lineHeight: '1.6', color: '#2d3748', fontSize: '1em' }}>
               Built a sophisticated Streamlit web application that enables engineers to capture knowledge through dual input methods: voice recording with AI transcription (OpenAI Whisper) or manual Q&A entry. The system uses GPT-4 for intelligent Q&A extraction, integrates with SQL Server for secure storage, and includes equipment management, PDF manual uploads, and a gamified points system to encourage knowledge sharing.
             </p>
           </motion.div>
@@ -123,9 +123,9 @@ function DykScribe() {
         >
           <Icon name="question" size={40} color="#63b3ed" />
           <div>
-            <h3 style={{ margin: '0 0 5px 0', color: '#63b3ed', fontSize: '1.2em' }}>What's in a Name?</h3>
-            <p style={{ margin: 0, fontSize: '1.1em', color: '#f7fafc' }}>
-              <strong style={{ color: '#90cdf4' }}>"DykScribe"</strong> = <strong style={{ color: '#90cdf4' }}>"Van Dyk"</strong> + <strong style={{ color: '#90cdf4' }}>"Describe"</strong>. 
+            <h3 style={{ margin: '0 0 5px 0', color: '#3182ce', fontSize: '1.2em' }}>What's in a Name?</h3>
+            <p style={{ margin: 0, fontSize: '1.1em', color: '#2d3748' }}>
+              <strong style={{ color: '#3182ce' }}>"DykScribe"</strong> = <strong style={{ color: '#3182ce' }}>"Van Dyk"</strong> + <strong style={{ color: '#3182ce' }}>"Describe"</strong>. 
               It's about describing technical problems to build a shared brain for the company.
             </p>
           </div>
@@ -146,10 +146,10 @@ function DykScribe() {
               border: `1px solid ${metric.color}44`,
               textAlign: 'center'
             }}>
-              <div className="metric-value" style={{ fontSize: '2.5em', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
+              <div className="metric-value" style={{ fontSize: '2.5em', fontWeight: 'bold', color: '#2d3748', marginBottom: '5px' }}>
                 {metric.isStatic ? metric.value : <AnimatedCounter value={metric.value} duration={2} />}{metric.suffix}
               </div>
-              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px', color: '#f7fafc', fontWeight: '500' }}>
+              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px', color: '#4a5568', fontWeight: '500' }}>
                 {metric.label}
               </div>
             </div>
@@ -159,7 +159,7 @@ function DykScribe() {
         {/* Features & Impact Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '25px' }}>
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h2 style={{ color: '#feb47b', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h2>
+            <h2 style={{ color: '#dd6b20', borderBottom: '1px solid #cbd5e0', paddingBottom: '10px', marginBottom: '15px' }}>Key Features</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: 'microphone', text: 'Dual Input: Voice recording (Whisper AI) or manual entry' },
@@ -169,15 +169,15 @@ function DykScribe() {
                 { icon: 'file', text: 'PDF Uploads: Attach equipment manuals (up to 25MB)' },
                 { icon: 'building', text: 'Equipment Management: Dynamic type/manufacturer/model selection' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#f7fafc', fontSize: '1em' }}>
-                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#2d3748', fontSize: '1em' }}>
+                  <Icon name={item.icon} size={20} color="#dd6b20" /> {item.text}
                 </li>
               ))}
             </ul>
           </motion.div>
 
           <motion.div variants={itemVariants} style={{ padding: '20px' }}>
-            <h2 style={{ color: '#feb47b', borderBottom: '1px solid #4a5568', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h2>
+            <h2 style={{ color: '#dd6b20', borderBottom: '1px solid #cbd5e0', paddingBottom: '10px', marginBottom: '15px' }}>Business Impact</h2>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {[
                 { icon: 'brain', text: 'Knowledge Retention: Preserve institutional expertise' },
@@ -186,8 +186,8 @@ function DykScribe() {
                 { icon: 'shield', text: 'Data Security: Hash-based duplicate prevention' },
                 { icon: 'refresh', text: 'Future Integration: Combines with RAG for complete knowledge base' }
               ].map((item, i) => (
-                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#f7fafc', fontSize: '1em' }}>
-                  <Icon name={item.icon} size={20} color="#feb47b" /> {item.text}
+                <li key={i} style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#2d3748', fontSize: '1em' }}>
+                  <Icon name={item.icon} size={20} color="#dd6b20" /> {item.text}
                 </li>
               ))}
             </ul>

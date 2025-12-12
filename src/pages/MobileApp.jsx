@@ -1,4 +1,5 @@
 import PresentationSlide from '../components/PresentationSlide';
+import ImageCarousel from '../components/ImageCarousel';
 
 function MobileApp() {
   return (
@@ -18,6 +19,18 @@ function MobileApp() {
           <h4>My Solution</h4>
           <p>Built a high-performance React Native cross-platform application (Van Dyk One) that replicates 100% of PowerApp functionality with significant improvements. Features include offline-aware data layer with SQLite fallback, five core workflows (Tickets, Machines, Sites, Expenses, Time Punches), React Navigation with tab and stack routing, and brand-consistent design. The app gracefully handles connectivity issues by falling back to local mock data when SQL Server is unavailable.</p>
         </div>
+      </div>
+
+      <div style={{ margin: '15px 0' }}>
+        <ImageCarousel 
+          images={[
+            { src: "/images/vdo/4704B4FF-0C76-4DCD-94C5-94300162EBED.png", alt: "Van Dyk One App Interface 1" },
+            { src: "/images/vdo/84E2F081-BF0A-4246-92BF-744FF2CEB67F_1_105_c.jpeg", alt: "Van Dyk One App Interface 2" },
+            { src: "/images/vdo/FD3E46EB-678E-4194-B0AF-53E63BD6E868_1_105_c.jpeg", alt: "Van Dyk One App Interface 3" },
+            { src: "/images/vdo/FDFE392E-B997-4C29-9551-618B44F8B1AF.png", alt: "Van Dyk One App Interface 4" }
+          ]} 
+          autoPlay={true}
+        />
       </div>
 
       <div className="metrics-grid" style={{ margin: '15px 0' }}>
@@ -57,7 +70,7 @@ function MobileApp() {
 
         <div className="impact-box" style={{ margin: 0, padding: '15px' }}>
           <h4 style={{ margin: '5px 0' }}>Business Impact</h4>
-          <ul style={{ fontSize: '0.9em' }}>
+          <ul style={{ fontSize: '0.9em', color: '#2d3748' }}>
             <li><strong>Efficiency:</strong> Faster report submission with offline capability</li>
             <li><strong>Accuracy:</strong> Reduced errors through improved UX and validation</li>
             <li><strong>Reliability:</strong> Works in remote locations with poor connectivity</li>

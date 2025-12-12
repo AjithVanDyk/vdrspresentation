@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from './Icons';
 import './ImageModal.css';
@@ -38,7 +39,7 @@ function ImageModal({ image, onClose, images = null, currentIndex = 0, onNavigat
 
   if (!image) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <AnimatePresence>
       <motion.div
         className="image-modal-overlay"
@@ -100,7 +101,8 @@ function ImageModal({ image, onClose, images = null, currentIndex = 0, onNavigat
           />
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 

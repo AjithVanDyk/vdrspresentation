@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import AnimatedCounter from '../components/AnimatedCounter';
-import ClickableImage from '../components/ClickableImage';
+import ImageCarousel from '../components/ImageCarousel';
 import { Icon } from '../components/Icons';
 
 function RAGSystem() {
@@ -73,19 +73,9 @@ function RAGSystem() {
           </motion.div>
         </div>
 
-        {/* Image Grid */}
-        <motion.div variants={itemVariants} className="image-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px', margin: '15px 0' }}>
-          {ragImages.map((img, index) => (
-            <ClickableImage
-              key={index}
-              src={img.src}
-              alt={img.alt}
-              images={ragImages}
-              index={index}
-              className="grid-image"
-              style={{ height: '150px', width: '100%', objectFit: 'cover', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
-            />
-          ))}
+        {/* Image Carousel */}
+        <motion.div variants={itemVariants} style={{ margin: '15px 0' }}>
+          <ImageCarousel images={ragImages} autoPlay={true} />
         </motion.div>
 
         {/* Metrics Grid */}

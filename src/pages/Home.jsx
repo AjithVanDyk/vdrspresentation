@@ -38,7 +38,7 @@ function Home() {
         <motion.div className="profile-section" variants={fadeInScale}>
             <motion.div whileHover={{ scale: 1.05 }}>
               <ClickableImage
-                src="/images/exp/Profile Pic M (1) (1).jpg"
+                src="/images/Editorial/DSC01481.JPG"
                 alt="Ajith Srikanth"
                 className="profile-image"
               />
@@ -77,7 +77,7 @@ function Home() {
             whileHover={{ y: -10 }}
           >
             <div className="metric-value" style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#667eea' }}>
-              <AnimatedCounter value={11} duration={2} />
+              <AnimatedCounter value={30} duration={2} />
             </div>
             <div className="metric-label">Production Systems</div>
           </motion.div>
@@ -101,9 +101,9 @@ function Home() {
             whileHover={{ y: -10 }}
           >
             <div className="metric-value" style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#ff9800' }}>
-              <AnimatedCounter value={100} duration={2} />GB
+              <AnimatedCounter value={1} duration={2} />
             </div>
-            <div className="metric-label">Data Managed</div>
+            <div className="metric-label">Website</div>
           </motion.div>
         </motion.div>
 

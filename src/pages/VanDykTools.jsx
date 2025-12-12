@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PresentationSlide from '../components/PresentationSlide';
 import flowchartsMd from '../data/TOOLS_FLOWCHARTS.md?raw';
 import ClickableImage from '../components/ClickableImage';
+import ImageCarousel from '../components/ImageCarousel';
 
 // Initialize mermaid with enhanced theme
 mermaid.initialize({
@@ -15,24 +16,24 @@ mermaid.initialize({
     primaryColor: '#FF6B35',
     primaryTextColor: '#1a202c',
     primaryBorderColor: '#FF6B35',
-    lineColor: '#00539B',
-    secondaryColor: '#feb47b',
-    tertiaryColor: '#2c5282',
+    lineColor: '#2c5282',
+    secondaryColor: '#fff5f0',
+    tertiaryColor: '#edf2f7',
     background: '#ffffff',
     mainBkg: '#ffffff',
-    secondBkg: '#f8f9fa',
-    tertiaryBkg: '#e9ecef',
-    secondaryBorderColor: '#00539B',
-    tertiaryBorderColor: '#2c5282',
-    secondaryTextColor: '#4a5568',
-    tertiaryTextColor: '#718096',
+    secondBkg: '#fff5f0',
+    tertiaryBkg: '#ffffff',
+    secondaryBorderColor: '#FF6B35',
+    tertiaryBorderColor: '#cbd5e0',
+    secondaryTextColor: '#2d3748',
+    tertiaryTextColor: '#4a5568',
     textColor: '#1a202c',
-    fontSize: '16px',
+    fontSize: '14px',
     fontFamily: 'Outfit, sans-serif',
   },
   flowchart: {
     curve: 'basis',
-    padding: 20,
+    padding: 15,
     useMaxWidth: true,
     htmlLabels: true,
   },
@@ -40,32 +41,16 @@ mermaid.initialize({
     .node rect, .node circle, .node ellipse, .node polygon {
       fill: #ffffff;
       stroke: #FF6B35;
-      stroke-width: 2px;
-      transition: all 0.3s ease;
-    }
-    .node:hover rect, .node:hover circle, .node:hover ellipse, .node:hover polygon {
-      fill: #fff5f0;
-      stroke: #FF6B35;
-      stroke-width: 3px;
-      filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.3));
+      stroke-width: 1.5px;
     }
     .edgePath .path {
-      stroke: #00539B;
-      stroke-width: 2px;
-      transition: all 0.3s ease;
-    }
-    .edgePath:hover .path {
-      stroke: #FF6B35;
-      stroke-width: 3px;
+      stroke: #2c5282;
+      stroke-width: 1.5px;
     }
     .nodeLabel {
       font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .nodeLabel:hover {
-      font-weight: 700;
-      fill: #FF6B35;
+      font-weight: 500;
+      font-size: 14px;
     }
   `
 });
@@ -121,19 +106,19 @@ const MermaidDiagram = ({ chart, id, title }) => {
 
   return (
     <div style={{ 
-      background: 'rgba(255,255,255,0.95)', 
-      padding: '20px', 
-      borderRadius: '15px', 
-      boxShadow: '0 8px 24px rgba(0,0,0,0.1)', 
-      border: '2px solid rgba(255, 107, 53, 0.2)',
-      minHeight: '200px',
+      background: 'white', 
+      padding: '15px', 
+      borderRadius: '8px', 
+      boxShadow: 'inset 0 0 10px rgba(0,0,0,0.05)', 
+      border: '1px solid #e2e8f0',
+      minHeight: '150px',
+      maxHeight: '400px', // Limit height as requested
+      overflow: 'auto', // Allow scrolling
       display: 'flex',
-      justifyContent: 'center',
+      justifyContent: 'flex-start', // Alert from center to flex-start for scrolling
       alignItems: 'center',
       flexDirection: 'column',
-      width: '100%',
-      maxWidth: '100%',
-      overflow: 'auto'
+      width: '100%'
     }}>
       {error ? (
         <div style={{ color: '#e53e3e', textAlign: 'center' }}>
@@ -220,24 +205,17 @@ function VanDykTools() {
         </div>
       </div>
 
-      <div className="image-grid" style={{ margin: '15px 0', display: 'flex', justifyContent: 'center', gap: '20px' }}>
-        {[
-          { src: "/images/vdt/vdt1.png", alt: "Van Dyk Tools Hub Dashboard" },
-          { src: "/images/vdt/vdt2.png", alt: "Van Dyk Tools Login" }
-        ].map((img, index) => (
-          <ClickableImage
-            key={index}
-            src={img.src}
-            alt={img.alt}
-            images={[
-              { src: "/images/vdt/vdt1.png", alt: "Van Dyk Tools Hub Dashboard" },
-              { src: "/images/vdt/vdt2.png", alt: "Van Dyk Tools Login" }
-            ]}
-            index={index}
-            className="main-image"
-            style={{ maxHeight: '200px', objectFit: 'contain', width: 'auto' }}
-          />
-        ))}
+      <div style={{ margin: '30px 0' }}>
+        <ImageCarousel 
+          images={[
+            { src: "/images/vdt/vdt1.png", alt: "Van Dyk Tools Hub Dashboard" },
+            { src: "/images/vdt/vdt2.png", alt: "Van Dyk Tools Login" },
+            { src: "/images/vdt/vdt3.png", alt: "Van Dyk Tools Features" },
+            { src: "/images/vdt/Screenshot 2025-10-27 110500.png", alt: "Van Dyk Tools Interface" },
+            { src: "/images/vdt/Screenshot 2025-10-28 112718.png", alt: "Van Dyk Tools Reports" },
+            { src: "/images/vdt/Screenshot 2025-11-10 161206.png", alt: "Van Dyk Tools Analytics" }
+          ]} 
+        />
       </div>
 
       <div className="metrics-grid" style={{ margin: '15px 0' }}>
@@ -263,7 +241,7 @@ function VanDykTools() {
       </div>
 
       <div style={{ margin: '15px 0', background: 'white', borderRadius: '8px', padding: '15px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', borderLeft: '4px solid var(--vdrs-orange)' }}>
-        <h4 style={{ margin: '0 0 15px 0', color: 'var(--vdrs-blue)' }}>Processing Time Analysis</h4>
+        <h4 style={{ margin: '0 0 15px 0', color: '#1a202c' }}>Processing Time Analysis</h4>
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9em' }}>
           <thead>
             <tr style={{ borderBottom: '2px solid #eee', textAlign: 'left' }}>
@@ -283,7 +261,7 @@ function VanDykTools() {
               { step: 'Step 7', orig: 'Per file 15 mins', new: '60s' },
             ].map((row, i) => (
               <tr key={i} style={{ borderBottom: '1px solid #f5f5f5' }}>
-                <td style={{ padding: '8px', fontWeight: '500' }}>{row.step}</td>
+                <td style={{ padding: '8px', fontWeight: '500', color: '#2d3748' }}>{row.step}</td>
                 <td style={{ padding: '8px', color: '#e53e3e' }}>{row.orig}</td>
                 <td style={{ padding: '8px', color: '#38a169', fontWeight: 'bold' }}>{row.new}</td>
               </tr>
@@ -316,8 +294,8 @@ function VanDykTools() {
         </div>
 
         <div className="impact-box" style={{ margin: 0, padding: '15px' }}>
-          <h4 style={{ margin: '5px 0' }}>Business Impact</h4>
-          <ul style={{ fontSize: '0.9em' }}>
+          <h4 style={{ margin: '5px 0', color: 'white' }}>Business Impact</h4>
+          <ul className="force-white-text" style={{ fontSize: '0.9em', color: 'white' }}>
             <li><strong>Time Savings:</strong> Tasks reduced from hours/days to minutes/seconds (see processing time table)</li>
             <li><strong>Consistency:</strong> Standardized tools and file formats across all operations</li>
             <li><strong>Performance:</strong> Algorithmic optimization (O(1) lookups) efficiently handles 100K+ files</li>

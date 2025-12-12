@@ -99,13 +99,18 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
 }
 
+.theme-light .impact-box p,
+.theme-light .impact-box li {
+  color: #2d3748 !important;
+}
+
 .theme-light .metric-card {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .theme-light .metric-value,
 .theme-light .metric-label {
-  color: white !important; /* Keep metrics white as they have colored backgrounds */
+  color: white; /* Keep metrics white as they have colored backgrounds */
 }
 
 .theme-light h3,
@@ -218,18 +223,15 @@ body {
 
 /* Page Container - Presentation Format */
 .page {
-  width: 90%;
-  max-width: 1400px;
-  margin: 30px auto;
+  width: 100%;
+  margin: 0;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 25px 70px rgba(0,0,0,0.25), 0 10px 30px rgba(0,0,0,0.15);
-  padding: 50px;
-  min-height: 85vh;
+  padding: 40px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .page.dark-mode {
@@ -244,16 +246,16 @@ body {
   color: white;
 }
 
-.page[style*="backgroundImage"] h1,
-.page[style*="backgroundImage"] h2,
-.page[style*="backgroundImage"] h3,
-.page[style*="backgroundImage"] h4 {
-  color: white;
+.page.has-bg-image h1,
+.page.has-bg-image h2,
+.page.has-bg-image h3,
+.page.has-bg-image h4 {
+  color: white !important;
   text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 
-.page[style*="backgroundImage"] p,
-.page[style*="backgroundImage"] li {
+.page.has-bg-image p,
+.page.has-bg-image li {
   color: rgba(255,255,255,0.95);
   text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
@@ -770,4 +772,16 @@ strong {
     animation: none !important;
     transition: none !important;
   }
+}
+/* Utility to force white text */
+.force-white-text,
+.force-white-text li,
+.force-white-text p,
+.force-white-text h1,
+.force-white-text h2,
+.force-white-text h3,
+.force-white-text h4,
+.force-white-text h5,
+.force-white-text h6 {
+  color: white !important;
 }

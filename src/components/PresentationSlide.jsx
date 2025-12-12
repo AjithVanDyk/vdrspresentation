@@ -13,9 +13,7 @@ const PresentationSlide = ({ children, className = "", backgroundImage }) => {
   } : {};
   
   return (
-    <div className={`page ${className}`} style={{ 
-      minHeight: '100vh', 
-      padding: '40px', 
+    <div className={`page ${className} ${backgroundImage ? 'has-bg-image' : ''}`} style={{ 
       ...pageStyle
     }}>
       {backgroundImage && (
@@ -25,8 +23,8 @@ const PresentationSlide = ({ children, className = "", backgroundImage }) => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-          borderRadius: '12px',
+          backgroundColor: 'transparent',
+          background: 'linear-gradient(135deg, rgba(0, 102, 204, 0.85) 0%, rgba(0, 166, 81, 0.8) 100%)',
           zIndex: 0
         }} />
       )}

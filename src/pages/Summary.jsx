@@ -2,19 +2,20 @@ import { motion } from 'framer-motion';
 import AnimatedCounter from '../components/AnimatedCounter';
 import PresentationSlide from '../components/PresentationSlide';
 import { Icon } from '../components/Icons';
-import ClickableImage from '../components/ClickableImage';
+import ImageCarousel from '../components/ImageCarousel';
 
 function Summary() {
 
   const eventImages = [
-    "/images/exp/CAB3B256-F15D-4059-AF1F-C3EEFF4E5A16.jpg",
-    "/images/exp/IMG_9627.JPG",
+    "/images/exp/Screenshot 2025-10-07 163516.png",
     "/images/exp/Screenshot 2025-11-11 093620.png",
-    "/images/exp/Screenshot 2025-11-11 093641.png"
+    "/images/exp/Screenshot 2025-11-11 093641.png",
+    "/images/exp/IMG_9627.JPG",
+    "/images/Editorial/DSC01492.JPG"
   ];
 
   return (
-    <PresentationSlide backgroundImage="/images/image (1).png">
+    <PresentationSlide backgroundImage="/images/life_at_vdrs.png">
       <div className="slide-header">
         <h1>Life at Van Dyk</h1>
         <h2>Impact, Culture, and Family</h2>
@@ -67,22 +68,16 @@ function Summary() {
           More Than Just Work - A Family
         </h2>
         
-        <div className="image-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px', marginBottom: '20px' }}>
-          {eventImages.map((src, index) => (
-            <motion.div 
-              key={index} 
-              whileHover={{ scale: 1.05 }}
-              style={{ borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }}
-            >
-              <ClickableImage
-                src={src}
-                alt={`Van Dyk Event ${index + 1}`}
-                images={eventImages.map(img => ({ src: img, alt: `Van Dyk Event ${eventImages.indexOf(img) + 1}` }))}
-                index={index}
-                style={{ width: '100%', height: '120px', objectFit: 'cover' }}
-              />
-            </motion.div>
-          ))}
+        
+        <div style={{ marginBottom: '20px' }}>
+          <ImageCarousel 
+            images={eventImages.map((src, index) => ({
+              src: src,
+              alt: `Van Dyk Event ${index + 1}`
+            }))}
+            height="400px" // Taller for these event photos
+            autoPlay={true}
+          />
         </div>
       </div>
 
