@@ -5,7 +5,7 @@ function MobileApp() {
   return (
     <PresentationSlide>
       <div className="slide-header">
-        <h1>Mobile App (Van Dyk One)</h1>
+        <h1>Van Dyk One (Mobile App)</h1>
         <h2>Field Service Operations Platform</h2>
       </div>
 
@@ -58,24 +58,24 @@ function MobileApp() {
       <div className="two-column" style={{ margin: '15px 0', gap: '20px' }}>
         <div className="tech-list" style={{ margin: 0, padding: '15px' }}>
           <h4 style={{ margin: '5px 0' }}>Key Features</h4>
-          <ul style={{ fontSize: '0.9em' }}>
-            <li><strong>Five Core Workflows:</strong> Tickets, Machines, Sites, Expenses, and Home dashboard</li>
-            <li><strong>Time Punch System:</strong> Dedicated stack for travel/labor tracking with 30-day history</li>
-            <li><strong>DataProvider Architecture:</strong> SQL Server → SQLite → Mock data fallback chain</li>
-            <li><strong>Offline-First Design:</strong> Full functionality without internet connectivity</li>
-            <li><strong>Cross-Platform:</strong> React Native supports Android, iOS, and Web</li>
-            <li><strong>Brand Fidelity:</strong> Van Dyk colors and typography throughout</li>
+          <ul style={{ fontSize: '0.9em', listStyle: 'none', padding: 0, margin: 0 }}>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Five Core Workflows:</strong> Tickets, Machines, Sites, Expenses, and Home dashboard</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Time Punch System:</strong> Dedicated stack for travel/labor tracking with 30-day history</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>DataProvider Architecture:</strong> SQL Server → SQLite → Mock data fallback chain</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Offline-First Design:</strong> Full functionality without internet connectivity</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Cross-Platform:</strong> React Native supports Android, iOS, and Web</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Brand Fidelity:</strong> Van Dyk colors and typography throughout</li>
           </ul>
         </div>
 
         <div className="impact-box" style={{ margin: 0, padding: '15px' }}>
           <h4 style={{ margin: '5px 0' }}>Business Impact</h4>
-          <ul style={{ fontSize: '0.9em', color: '#2d3748' }}>
-            <li><strong>Efficiency:</strong> Faster report submission with offline capability</li>
-            <li><strong>Accuracy:</strong> Reduced errors through improved UX and validation</li>
-            <li><strong>Reliability:</strong> Works in remote locations with poor connectivity</li>
-            <li><strong>User Satisfaction:</strong> Modern, responsive interface improves field team experience</li>
-            <li><strong>Maintainability:</strong> React Native codebase easier to update than PowerApp</li>
+          <ul style={{ fontSize: '0.9em', color: '#2d3748', listStyle: 'none', padding: 0, margin: 0 }}>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Efficiency:</strong> Faster report submission with offline capability</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Accuracy:</strong> Reduced errors through improved UX and validation</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Reliability:</strong> Works in remote locations with poor connectivity</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>User Satisfaction:</strong> Modern, responsive interface improves field team experience</li>
+            <li style={{ marginBottom: '10px', paddingLeft: '0' }}><strong>Maintainability:</strong> React Native codebase easier to update than PowerApp</li>
           </ul>
         </div>
       </div>

@@ -7,23 +7,23 @@ import ImageCarousel from '../components/ImageCarousel';
 function Summary() {
 
   const eventImages = [
-    "/images/exp/Screenshot 2025-10-07 163516.png",
-    "/images/exp/Screenshot 2025-11-11 093620.png",
-    "/images/exp/Screenshot 2025-11-11 093641.png",
+    "/images/exp/CAB3B256-F15D-4059-AF1F-C3EEFF4E5A16.jpg",
+    "/images/exp/Image (4).jpg",
     "/images/exp/IMG_9627.JPG",
-    "/images/Editorial/DSC01492.JPG"
+    "/images/exp/Screenshot 2025-11-11 093620.png",
+    "/images/exp/Screenshot 2025-11-11 093641.png"
   ];
 
   return (
     <PresentationSlide backgroundImage="/images/life_at_vdrs.png">
-      <div className="slide-header">
+      <div className="slide-header summary-header">
         <h1>Life at Van Dyk</h1>
         <h2>Impact, Culture, and Family</h2>
       </div>
 
       {/* Career Journey Section */}
       <div className="journey-box" style={{ padding: '20px', margin: '15px 0', background: 'var(--vd-gradient-hero)' }}>
-        <h2 style={{ color: 'white', marginBottom: '15px', fontSize: '1.5em' }}>
+        <h2 style={{ color: 'white', marginBottom: '15px', fontSize: '1.5em', fontWeight: 'bold' }}>
           Mechatronics Engineer → Operations Manager → Manufacturing Engineer → After Sales Intern
         </h2>
         <p style={{ color: 'white', fontSize: '1.1em' }}>
@@ -64,20 +64,71 @@ function Summary() {
 
       {/* Culture Section */}
       <div style={{ margin: '30px 0' }}>
-        <h2 style={{ borderBottom: '2px solid var(--vdrs-orange)', paddingBottom: '10px', marginBottom: '20px' }}>
+        <h2 style={{ borderBottom: '2px solid var(--vdrs-orange)', paddingBottom: '10px', marginBottom: '20px', color: '#1a202c', textShadow: '0 2px 4px rgba(255,255,255,0.8)' }}>
           More Than Just Work - A Family
         </h2>
         
         
         <div style={{ marginBottom: '20px' }}>
           <ImageCarousel 
-            images={eventImages.map((src, index) => ({
-              src: src,
-              alt: `Van Dyk Event ${index + 1}`
-            }))}
+            images={[
+              { src: eventImages[0], alt: "Steve's Burger" },
+              { src: eventImages[1], alt: "Summer Party" },
+              { src: eventImages[2], alt: "Cleanup for Paul" },
+              { src: eventImages[3], alt: "Walk Event" },
+              { src: eventImages[4], alt: "Walk Event" }
+            ]}
             height="400px" // Taller for these event photos
             autoPlay={true}
           />
+        </div>
+      </div>
+
+      {/* Experience Outside Van Dyk Office */}
+      <div style={{ margin: '30px 0', padding: '25px', background: 'rgba(255,255,255,0.95)', borderRadius: '15px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
+        <h2 style={{ borderBottom: '2px solid var(--vdrs-orange)', paddingBottom: '10px', marginBottom: '20px', color: '#1a202c', fontWeight: 'bold' }}>
+          Experience Outside Van Dyk Office
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+          <div style={{ padding: '15px', background: 'rgba(0,83,155,0.05)', borderRadius: '10px', borderLeft: '4px solid var(--vdrs-orange)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+              <Icon name="trophy" size={24} color="var(--vdrs-orange)" />
+              <h3 style={{ margin: 0, color: 'var(--vdrs-blue)', fontSize: '1.2em' }}>NASCAR Races</h3>
+            </div>
+            <p style={{ margin: 0, color: '#333', fontSize: '0.95em' }}>Attended 2 NASCAR races, experiencing the excitement and energy of professional racing events.</p>
+          </div>
+
+          <div style={{ padding: '15px', background: 'rgba(0,83,155,0.05)', borderRadius: '10px', borderLeft: '4px solid var(--vdrs-orange)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+              <Icon name="users" size={24} color="var(--vdrs-orange)" />
+              <h3 style={{ margin: 0, color: 'var(--vdrs-blue)', fontSize: '1.2em' }}>Thursday Meetups</h3>
+            </div>
+            <p style={{ margin: 0, color: '#333', fontSize: '0.95em' }}>Regular Thursday meetups, mostly at Beer Garden, building connections and camaraderie with the team.</p>
+          </div>
+
+          <div style={{ padding: '15px', background: 'rgba(0,83,155,0.05)', borderRadius: '10px', borderLeft: '4px solid var(--vdrs-orange)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+              <Icon name="heart" size={24} color="var(--vdrs-orange)" />
+              <h3 style={{ margin: 0, color: 'var(--vdrs-blue)', fontSize: '1.2em' }}>Alzheimer's Walk</h3>
+            </div>
+            <p style={{ margin: 0, color: '#333', fontSize: '0.95em' }}>Participated in the Alzheimer's Walk, supporting a meaningful cause alongside the Van Dyk community.</p>
+          </div>
+
+          <div style={{ padding: '15px', background: 'rgba(0,83,155,0.05)', borderRadius: '10px', borderLeft: '4px solid var(--vdrs-orange)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+              <Icon name="tools" size={24} color="var(--vdrs-orange)" />
+              <h3 style={{ margin: 0, color: 'var(--vdrs-blue)', fontSize: '1.2em' }}>Helping Paul in Test Center</h3>
+            </div>
+            <p style={{ margin: 0, color: '#333', fontSize: '0.95em' }}>Assisted Paul in the Test Center with sorting tasks, contributing 3 times in total to support operations.</p>
+          </div>
+
+          <div style={{ padding: '15px', background: 'rgba(0,83,155,0.05)', borderRadius: '10px', borderLeft: '4px solid var(--vdrs-orange)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+              <Icon name="calendar" size={24} color="var(--vdrs-orange)" />
+              <h3 style={{ margin: 0, color: 'var(--vdrs-blue)', fontSize: '1.2em' }}>Summer Party</h3>
+            </div>
+            <p style={{ margin: 0, color: '#333', fontSize: '0.95em' }}>Participated in the Summer Party, helping with setup and wrap-up activities, contributing to team celebrations.</p>
+          </div>
         </div>
       </div>
 

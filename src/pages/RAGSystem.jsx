@@ -73,6 +73,25 @@ function RAGSystem() {
           </motion.div>
         </div>
 
+        {/* Video Section */}
+        <motion.div variants={itemVariants} style={{ margin: '15px 0', textAlign: 'center' }}>
+          <h3 style={{ marginBottom: '15px', color: '#00539B', fontSize: '1.5em' }}>System Demo</h3>
+          <video 
+            controls 
+            style={{ 
+              width: '100%', 
+              maxWidth: '900px', 
+              borderRadius: '15px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+              margin: '0 auto',
+              display: 'block'
+            }}
+          >
+            <source src="/videos/ragchatbpt.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        </motion.div>
+
         {/* Image Carousel */}
         <motion.div variants={itemVariants} style={{ margin: '15px 0' }}>
           <ImageCarousel images={ragImages} autoPlay={true} />
@@ -134,13 +153,19 @@ function RAGSystem() {
             <h4 style={{ margin: '0 0 15px 0', color: '#FF6B35', borderBottom: '2px solid #FF6B35', paddingBottom: '10px' }}>Business Impact</h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9em' }}>
               <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#2d3748' }}>
-                <Icon name="zap" size={18} color="#FF6B35" /> <strong>Instant Answers:</strong> Reduces technician search time from hours to seconds.
+                <Icon name="zap" size={18} color="#FF6B35" /> <strong>Time Savings:</strong> Reduces technician search time from hours to seconds, enabling faster problem resolution.
               </li>
               <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#2d3748' }}>
-                <Icon name="money" size={18} color="#FF6B35" /> <strong>Cost Savings:</strong> Automates knowledge retrieval, improving efficiency.
+                <Icon name="brain" size={18} color="#FF6B35" /> <strong>Knowledge Accessibility:</strong> Makes 10,000+ documents instantly searchable, eliminating manual file navigation.
               </li>
               <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#2d3748' }}>
-                <Icon name="lightbulb" size={18} color="#FF6B35" /> <strong>Key Insight: Build vs. Buy:</strong> For large-scale enterprise, off-the-shelf solutions (e.g., Microsoft Copilot) often offer better long-term value due to maintenance and infrastructure costs.
+                <Icon name="rocket" size={18} color="#FF6B35" /> <strong>Faster Onboarding:</strong> New technicians can find answers independently, reducing training time and dependency on experienced staff.
+              </li>
+              <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#2d3748' }}>
+                <Icon name="shield" size={18} color="#FF6B35" /> <strong>Improved Accuracy:</strong> Provides contextually relevant answers with source citations, reducing errors from outdated or incorrect information.
+              </li>
+              <li style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '10px', color: '#2d3748' }}>
+                <Icon name="money" size={18} color="#FF6B35" /> <strong>Operational Efficiency:</strong> Automates knowledge retrieval, allowing technicians to focus on hands-on work rather than document searching.
               </li>
             </ul>
           </motion.div>

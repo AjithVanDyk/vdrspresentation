@@ -135,7 +135,7 @@ function DykScribe() {
         <motion.div variants={itemVariants} className="metrics-grid" style={{ margin: '0 0 25px 0', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px' }}>
           {[
             { label: 'Target Engineers', value: 50, suffix: '', color: '#805ad5' },
-            { label: 'Data Points', value: '∞', suffix: '', color: '#38a169', isStatic: true },
+            { label: 'Service Engineer Brain', value: '∞', suffix: '', color: '#38a169', isStatic: true, description: 'Collective knowledge grows infinitely as engineers contribute their experience' },
             { label: 'Voice Capable', value: 100, suffix: '%', color: '#3182ce' },
             { label: 'Database', value: 'SQL', suffix: '', color: '#d69e2e', isStatic: true }
           ].map((metric, index) => (
@@ -149,9 +149,14 @@ function DykScribe() {
               <div className="metric-value" style={{ fontSize: '2.5em', fontWeight: 'bold', color: '#2d3748', marginBottom: '5px' }}>
                 {metric.isStatic ? metric.value : <AnimatedCounter value={metric.value} duration={2} />}{metric.suffix}
               </div>
-              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px', color: '#4a5568', fontWeight: '500' }}>
+              <div className="metric-label" style={{ fontSize: '0.9em', textTransform: 'uppercase', letterSpacing: '1px', color: '#4a5568', fontWeight: '500', marginBottom: metric.description ? '8px' : '0' }}>
                 {metric.label}
               </div>
+              {metric.description && (
+                <div style={{ fontSize: '0.75em', color: '#718096', fontStyle: 'italic', lineHeight: '1.3', marginTop: '5px' }}>
+                  {metric.description}
+                </div>
+              )}
             </div>
           ))}
         </motion.div>
